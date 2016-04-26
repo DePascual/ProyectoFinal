@@ -1,0 +1,39 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+
+<html ng-app="Fitocracy">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>FITOCRACY</title>
+    @Scripts.Render("~/bundles/libraries")
+    @Scripts.Render("~/bundles/Fitocracy")
+    @Styles.Render("~/bundles/css")
+</head>
+
+<body ng-controller="menuPpalController">
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/#/home">FITOCRACY</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/#/home"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="/#/hireCoach"><i class="fa fa-shield"></i> Hire a Coach</a></li>
+                <li><a href="/#/about"><i class="fa fa-comment"></i> About Us</a></li>
+                <li><a href="/#/login"><i class="fa fa-comment"></i> Login</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-full">
+        <div ng-view>
+        </div>
+    </div>
+  
+    <footer>
+        <hr />
+        <p>&copy; @DateTime.Now.Year - FITOCRACY</p>
+    </footer>
+    @Scripts.Render("~/bundles/libraries")
+    @Scripts.Render("~/bundles/Fitocracy")
+</body>
+</html>

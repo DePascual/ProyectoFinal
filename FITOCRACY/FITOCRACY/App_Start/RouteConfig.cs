@@ -18,6 +18,12 @@ namespace FITOCRACY
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute("Default2",
+                    "{controler}/{action}/{id}",
+                     new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                     new { controller = @"^(Home|ZonaUsuarios|Coach|Compra)$", id = @"^[0-9]{4}$" }
+            );
         }
     }
 }

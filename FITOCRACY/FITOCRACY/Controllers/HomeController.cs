@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FITOCRACY.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,7 +16,7 @@ namespace FITOCRACY.Controllers
             return View();
         }
 
-        //Partials
+        //Partials GET
         public ActionResult Home()
         {
             return View();
@@ -27,6 +28,18 @@ namespace FITOCRACY.Controllers
         public ActionResult Login()
         {
             return View();
+        }
+
+        //Partials POST
+        //[HttpPost]
+        //public ActionResult Login(usuario usuario)
+        //{
+
+        //}
+
+        public void existeUsu(usuarioLogin usu)
+        {
+
         }
     }
 }

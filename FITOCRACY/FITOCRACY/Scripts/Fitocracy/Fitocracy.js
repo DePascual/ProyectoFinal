@@ -1,7 +1,7 @@
 ﻿var Fitocracy = angular.module('Fitocracy', ['ngRoute']);
 
 Fitocracy.controller('menuPpalController', menuPpalController);
-//Fitocracy.controller('mainController', mainController);
+Fitocracy.controller('loginController', loginController);
 //Fitocracy.controller('aboutController', aboutController);
 //Fitocracy.controller('contactController', contactController);
 
@@ -20,7 +20,7 @@ var configFunction = function ($routeProvider) {
             templateUrl: 'home/about',
         })
         .when('/login', {
-            templateUrl: 'home/login',
+            templateUrl: 'home/login',   
         });
 }
 configFunction.$inject = ['$routeProvider'];

@@ -47,8 +47,7 @@ namespace FitocracyFinal.Controllers
         public bool Logeo(Usuario usuario)
         {
             var existeUsu = false;
-            var collection = _dbContext.GetDatabase().GetCollection<Usuario>("login");
-
+            var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
             return existeUsu = collection.AsQueryable().Where(x => x.Username == usuario.Username && x.Password == usuario.Password).Any() ? existeUsu = true : existeUsu = false;
         }
     }

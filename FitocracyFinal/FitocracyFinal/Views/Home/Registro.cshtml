@@ -1,50 +1,63 @@
-﻿<div id="modalLogin" class="modal fade" tabindex="-1" role="dialog">
+﻿<div id="modalRegistro" class="modal fade" tabindex="-1" role="dialog" ng-controller="registroCtrl">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Hey Fitocrat!</h4>
+                <h4 class="modal-title">Hey Stranger!</h4>
             </div>
 
             <div class="modal-body">
-                <h1>REGISTRO</h1>
-                @*<p>Log In to continue tracking your workouts, developing healthy habits, and reaching your goals with the help of our expert coaches.</p>
+                <p>Sign up below to continue your health and fitness journey.</p>
 
                 <div name="loginForm">
 
                     <div class="row">
-                        <div class="col-lg-2"></div>
-                        <div class="form-group col-lg-8">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input id="uName" type="text" class="form-control" placeholder="userName" ng-model="uName" required />
+                        <!--COLUMNA IZQUIERDA-->
+                        <div class="col-lg-6">
+                            
+                            <div class="form-group col-lg-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Email</span>
+                                    <input id="uEmail" type="email" class="form-control" placeholder="userName@email.com" ng-model="uEmail" required />
+                                </div>
+                            </div>
+
+                            <div class="form-group col-lg-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Password</span>
+                                    <input id="uPass" type="password" class="form-control" placeholder="***********" ng-model="uPass" required />
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-2"></div>
-                    </div>
+                       
+                        
+                         <!--COLUMNA DERECHA-->
+                        <div class="col-lg-6">
+                            <div class="form-group col-lg-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Username</span>
+                                    <input id="uName" type="text" class="form-control" placeholder="CAROL" ng-model="uName" required />
+                                </div>
+                            </div>
 
-                    <div class="row">
-                        <div class="col-lg-2"></div>
-                        <div class="form-group col-lg-8">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <input id="uPass" type="password" class="form-control" placeholder="*********" ng-model="uPass" required />
+                            <div class="form-group col-lg-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Password Again</span>
+                                    <input id="uPassRep" type="password" class="form-control" placeholder="***********" ng-model="uPassRep" required />
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-2"></div>
                     </div>
+                </div>
 
-                    <div class="form-group text-center">
-                        <span><a href="@Url.Action("ForgotPassword", "Home")">I forgot my username or password</a></span>
-                    </div>
-                </div>*@
+                <div class="form-group text-center">
+                    <button class="btn btn-primary btn-block" ng-click="registrar()">Create An Account</button>              
+                </div>           
             </div>
 
-            <div class="modal-footer">
-                <span class="pull-left"><a href="/#/Registro">I want to create a new account</a></span>
-                <button class="btn btn-primary" ng-click="logear()">Submit</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <div class="modal-footer">            
+                <span class="text-center"><a href="/#/Login">I have already a Fitocracy account, silly!</a></span>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

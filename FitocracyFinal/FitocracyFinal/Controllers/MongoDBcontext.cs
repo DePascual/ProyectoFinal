@@ -13,10 +13,10 @@ namespace FitocracyFinal.Controllers
         //Aquí habría que hashear la contraseña de acceso a la BD
         public MongoDBcontext()
         {
-            var uri = "mongodb://DePascual:Magarza22@ds011880.mlab.com:11880/pimerapruebacarol";
+            var uri = "mongodb://root:Fitocracy1234@ds017582.mlab.com:17582/fitocracymdb";
             var client = new MongoClient(uri);
             var server = client.GetServer();
-            this.database = server.GetDatabase("FitocracyMDB");
+            this.database = server.GetDatabase("fitocracymdb");
         }
 
 

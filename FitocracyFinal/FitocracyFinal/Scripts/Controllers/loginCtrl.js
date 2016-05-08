@@ -2,6 +2,7 @@
     .controller('loginCtrl', function ($scope, loginService) {
 
         //Muestra la ventana emergente
+        //$("#modalRegistro").modal('hide');
         $("#modalLogin").modal('show');
 
         $scope.awesomeThings = [
@@ -32,6 +33,8 @@
                 }
             })
         }
+
+       
 
         $scope.alertmsg = function () {
             $("#alertModal").modal('hide');

@@ -32,6 +32,11 @@
                     window.location.href = "/ZonaUsuarios/Index";
                 }
             })
+        };
+
+        $scope.irARegistro = function () {
+            $("#modalLogin").modal('hide');
+            window.location.href = "/#/Registro";
         }
 
        

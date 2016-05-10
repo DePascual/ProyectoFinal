@@ -10,24 +10,32 @@
             <div class="modal-body">
                 <p>Sign up below to continue your health and fitness journey.</p>
 
-                <div name="loginForm">
+                <form name="loginForm" novalidate>
 
                     <div class="row">
                         <!--COLUMNA IZQUIERDA-->
                         <div class="col-lg-6">
                             
                             <div class="form-group col-lg-12">
-                                <div class="input-group">
+                                <div class="input-group" ng-class="{'has-error':loginForm.uEmail.$invalid && !loginForm.uEmail.$pristine}">
                                     <span class="input-group-addon">Email</span>
-                                    <input id="uEmail" type="email" class="form-control" placeholder="userName@email.com" ng-model="uEmail" required />
+                                    <input id="uEmail" name="uEmail" type="email" class="form-control" placeholder="userName@email.com" ng-model="uEmail" ng-required="true"/>                           
                                 </div>
+                                <p ng-show="loginForm.uEmail.$invalid && !loginForm.uEmail.$pristine" class="help-block">Enter a valid email</p>
                             </div>
 
                             <div class="form-group col-lg-12">
-                                <div class="input-group">
+                                <div class="input-group"  ng-class="{'has-error':loginForm.uPass.$invalid && !loginForm.uPass.$pristine}">
                                     <span class="input-group-addon">Password</span>
-                                    <input id="uPass" type="password" class="form-control" placeholder="***********" ng-model="uPass" required />
-                                </div>
+                                    <input id="uPass" name="uPass" type="password" class="form-control" placeholder="***********" ng-model="uPass" ng-required="true" ng-pattern="/^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{7,}$/" />
+                                    @*(/^
+                                    (?=.*\d)                //should contain at least one digit
+                                    (?=.*[a-z])             //should contain at least one lower case
+                                    (?=.*[A-Z])             //should contain at least one upper case
+                                    [a-zA-Z0-9]{8,}         //should contain at least 8 from the mentioned characters
+                                    $/)*@                               
+                                </div>  
+                                <p ng-show="loginForm.uPass.$invalid && !loginForm.uPass.$pristine" class="help-block">Enter a valid password</p>                       
                             </div>
                         </div>
                        
@@ -35,29 +43,34 @@
                          <!--COLUMNA DERECHA-->
                         <div class="col-lg-6">
                             <div class="form-group col-lg-12">
-                                <div class="input-group">
+                                <div class="input-group" ng-class="{'has-error':loginForm.uName.$invalid && !loginForm.uName.$pristine}">
                                     <span class="input-group-addon">Username</span>
-                                    <input id="uName" type="text" class="form-control" placeholder="CAROL" ng-model="uName" required />
+                                    <input id="uName" name="uName" type="text" class="form-control" placeholder="CAROL" ng-model="uName" ng-required="true" ng-minlength="3" ng-maxlength="15" />
                                 </div>
+                                <p ng-show="loginForm.uName.$invalid && !loginForm.uName.$pristine" class="help-block">Enter a valid name</p>
                             </div>
 
                             <div class="form-group col-lg-12">
-                                <div class="input-group">
+                                <div class="input-group" ng-class="{'has-error':loginForm.uPassRep.$invalid && !loginForm.uPassRep.$pristine}">
                                     <span class="input-group-addon">Password Again</span>
-                                    <input id="uPassRep" type="password" class="form-control" placeholder="***********" ng-model="uPassRep" required />
+                                    <input id="uPassRep" name="uPassRep" type="password" class="form-control" placeholder="***********" ng-model="uPassRep" ng-required="true" compare-to="uPass" />
                                 </div>
+                                <p ng-show="loginForm.uPassRep.$invalid && !loginForm.uPassRep.$pristine" class="help-block">The password must be the same</p>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="form-group text-center">
-                    <button class="btn btn-primary btn-block" ng-click="registrar()">Create An Account</button>              
-                </div>           
+                    <div class="form-group text-center">
+                        <input type="submit" class="btn btn-primary btn-block" ng-click="registrar(loginForm.$valid)" ng-disabled="loginForm.$invalid" value="Create An Account" />
+                        @*<button  type="submit" class="btn btn-primary btn-block" ng-submit="registrar(loginForm.$valid)" ng-disabled="loginForm.$invalid">Create An Account</button>*@
+                    </div> 
+
+                </form>                     
             </div>
 
             <div class="modal-footer">            
-                <span class="text-center"><a ng-click="irALogin()">I have already a Fitocracy account, silly!</a></span>
+                <span class="pull-left"><a ng-click="irALogin()">I have already a Fitocracy account, silly!</a></span>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

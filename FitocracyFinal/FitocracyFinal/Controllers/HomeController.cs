@@ -42,6 +42,13 @@ namespace FitocracyFinal.Controllers
             return View();
         }
 
+        public ActionResult messages()
+        {
+            return View();
+        }
+
+
+
         //Metodos
         [HttpPost]
         public bool Logeo(Usuario usuario)

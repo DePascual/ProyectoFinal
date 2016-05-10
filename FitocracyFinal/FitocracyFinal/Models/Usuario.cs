@@ -8,7 +8,8 @@ namespace FitocracyFinal.Models
 {
     public class Usuario
     {
-        private ObjectId _IdUsuario;
+        //Asi el _id de MongoDB es el mismo que el del usuario
+        private ObjectId _id { get; set; } 
 
         private string _Email;
 
@@ -30,18 +31,18 @@ namespace FitocracyFinal.Models
 
         private DateTime _Birthday;
 
-        public ObjectId IdUsuario
-        {
-            get
-            {
-                return _IdUsuario;
-            }
+        //public ObjectId IdUsuario
+        //{
+        //    get
+        //    {
+        //        return _id;
+        //    }
 
-            set
-            {
-                _IdUsuario = value;
-            }
-        }
+        //    set
+        //    {
+        //        _id = value;
+        //    }
+        //}
 
         public string Email
         {

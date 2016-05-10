@@ -1,11 +1,11 @@
 ﻿angular.module('Fitocracy')
     .service('registroService', function ($http) {
 
-        this.UserLogin = function (User) {
+        this.UserRegistro = function (User) {
 
             var response = $http({
                 method: "post",
-                url: "/Home/Logeo",
+                url: "/Home/Registro",
                 data: JSON.stringify(User),
                 dataType: "json"
             }).success(function (data, status, headers, config) {

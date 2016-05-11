@@ -22,7 +22,7 @@ namespace FitocracyFinal.Controllers
 
         //View que trabaja a modo de Layout de la sección
         public ActionResult Index()
-        {
+        {         
             return View();
         }
 
@@ -61,9 +61,20 @@ namespace FitocracyFinal.Controllers
         {
             //Ojo!! Devuelve todo el usuario. Cuidado con password y tarjetas => ENCRIPTAR!!!
             Usuario usu = new Usuario();
-            var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
-            usu = collection.AsQueryable().Where(x => x.Username == usuario.Username && x.Password == usuario.Password).Select(x => (Usuario)x).SingleOrDefault();
-            return JsonConvert.SerializeObject(usu);
+            try
+            {
+                var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
+                usu = collection.AsQueryable().Where(x => x.Username == usuario.Username && x.Password == usuario.Password).Select(x => (Usuario)x).SingleOrDefault();
+                //Session["idUsu"] = usu._id;
+
+                //Meto en Session el usuario y en Session Storage
+                Session["infoUsu"] = (Usuario)usu;
+                return JsonConvert.SerializeObject(usu);
+            }
+            catch (Exception)
+            {
+                return null;
+            }         
         }
 
 

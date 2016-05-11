@@ -31,6 +31,7 @@
                     else {
                         $window.sessionStorage["userInfo"] = JSON.stringify(msg.data);
                         window.location.href = "/ZonaUsuarios/Index";
+                        //$http.post("/ZonaUsuarios/Index", { "usuario": msg.data }).success(function () { alert(ok)})
                     }
                 })
             } else {

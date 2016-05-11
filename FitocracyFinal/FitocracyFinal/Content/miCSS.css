@@ -1,4 +1,9 @@
-﻿.button-login {
+﻿body {
+    font-family: 'Century Gothic';
+    color: #8f9a9e;
+}
+
+.button-login {
     font-size: 18px;
     color: #0079ff;
     border: 2px solid #0079ff;
@@ -30,3 +35,28 @@ footer p {
     border-color: green;
     outline-color: green;
 }
+
+.portada h4 {
+    font-size: 2em;
+    text-transform: uppercase;
+    color: #2D383C;
+    font-size: 24px;
+}
+
+.portada h3 {
+    margin: 0 auto .25em;
+    padding-top: 1em;
+    color: #2D383C;
+    text-align: center;
+    font-size: 54px;
+    width: 90%;
+    font-family: 'Bariol Light',Arial;
+}
+
+.portada h1 {
+    font-size: 2em;
+    text-transform: uppercase;
+    color: #2D383C;
+    font-size: 24px;
+}
+

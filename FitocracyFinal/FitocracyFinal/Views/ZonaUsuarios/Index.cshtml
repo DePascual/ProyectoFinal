@@ -1,13 +1,21 @@
-﻿<!DOCTYPE html>
-
+﻿@model FitocracyFinal.Models.Usuario
+@using MongoDB.Bson
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>ZONA USUARIOS</title>
 </head>
 <body>
-    <div> 
+    <div>
         ZONA USUARIOS
+
+        @Model.Username
+        @Model.Email
+        @Model.Foto
+        <img src='@Url.Action("downloadPhoto", "Fotos", new { id= Model._id })' height="300" width="300" />
+       
+        
     </div>
 </body>
 </html>

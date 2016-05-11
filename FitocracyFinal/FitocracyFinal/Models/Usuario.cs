@@ -7,6 +7,7 @@ using System.Web;
 
 namespace FitocracyFinal.Models
 {
+    [BsonIgnoreExtraElements(true)]
     public class Usuario
     {
         //Asi el _id de MongoDB es el mismo que el del usuario

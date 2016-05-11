@@ -1,5 +1,5 @@
 ﻿angular.module('Fitocracy')
-    .controller('loginCtrl', function ($scope, loginService) {
+    .controller('loginCtrl', function ($scope, loginService, $window) {
 
         //Muestra la ventana emergente
         //$("#modalRegistro").modal('hide');
@@ -14,7 +14,8 @@
             if (isValid) {
                 var usuario = {
                     Username: $scope.uName,
-                    Password: $scope.uPass
+                    Password: $scope.uPass,
+                    _id: "null"
                 };
 
                 //Envio de datos a loginService
@@ -22,14 +23,13 @@
 
                 //Respuesta de loginService
                 getData.then(function (msg) {
-                    if (msg.data == "False") {
+                    if (msg.data == "") {
                         $("#errorLogin").css('display', 'block');
                         $('#uName').removeClass('ng-valid').addClass('ng-invalid');
                         $('#uPass').removeClass('ng-valid').addClass('ng-invalid');
                     }
                     else {
-                        //Meter en sesion al usuario
-                        alert("OK");
+                        $window.sessionStorage["userInfo"] = JSON.stringify(msg.data);
                         window.location.href = "/ZonaUsuarios/Index";
                     }
                 })
@@ -42,9 +42,7 @@
             $("#modalLogin").modal('hide');
             window.location.href = "/#/Registro";
         }
-
-       
-
+    
         $scope.alertmsg = function () {
             $("#errorLogin").css('display', 'block');
         };

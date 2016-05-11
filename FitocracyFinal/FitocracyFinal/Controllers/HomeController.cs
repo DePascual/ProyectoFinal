@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 
 namespace FitocracyFinal.Controllers
 {
@@ -55,6 +56,16 @@ namespace FitocracyFinal.Controllers
             var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");           
             return existeUsu = collection.AsQueryable().Where(x => x.Username == usuario.Username && x.Password == usuario.Password).Any() ? existeUsu = true : existeUsu = false;
         }
+
+        public string loginRecupUsuario(Usuario usuario)
+        {
+            //Ojo!! Devuelve todo el usuario. Cuidado con password y tarjetas => ENCRIPTAR!!!
+            Usuario usu = new Usuario();
+            var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
+            usu = collection.AsQueryable().Where(x => x.Username == usuario.Username && x.Password == usuario.Password).Select(x => (Usuario)x).SingleOrDefault();
+            return JsonConvert.SerializeObject(usu);
+        }
+
 
         [HttpPost]
         public bool Registro (Usuario usuario)

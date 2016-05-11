@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,8 @@ namespace FitocracyFinal.Models
     public class Usuario
     {
         //Asi el _id de MongoDB es el mismo que el del usuario
-        private ObjectId _id { get; set; } 
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string _id { get; set; } 
 
         private string _Email;
 

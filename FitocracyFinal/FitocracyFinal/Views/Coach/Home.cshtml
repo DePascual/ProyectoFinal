@@ -1,4 +1,6 @@
-﻿<div class="text-center">
+﻿@model List<FitocracyFinal.Models.Entrenamientos>
+
+<div class="text-center">
     <div class="row">
         <div class="col-lg-1"></div>
             <div class="col-lg-5 pull-left">
@@ -18,7 +20,18 @@
         </div>
     </div>
     <hr />
-    @Html.Partial("~/Views/PartialsViews/ServicesPV.cshtml")
+
+    @{
+        foreach (var entr in Model)
+        {
+            if (entr.Familia.Equals("Weight Loss"))
+            {
+                @Html.Partial("~/Views/PartialsViews/ServicesPV.cshtml", entr)
+            }
+        }
+    }
+
+  
 
     <div class="row" style="background-color:#EFF1F3">
         <div class="col-lg-12" id="loss">

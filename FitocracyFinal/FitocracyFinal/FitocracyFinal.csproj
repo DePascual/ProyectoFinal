@@ -130,6 +130,26 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Imagenes\Entrenadores\Allison.jpg" />
+    <Content Include="Content\Imagenes\Entrenadores\berzinator.jpg" />
+    <Content Include="Content\Imagenes\Entrenadores\Jason.jpg" />
+    <Content Include="Content\Imagenes\Entrenadores\mike.jpg" />
+    <Content Include="Content\Imagenes\Entrenadores\pagel.jpg" />
+    <Content Include="Content\Imagenes\Entrenadores\shelley.jpg" />
+    <Content Include="Content\Imagenes\Entrenadores\Stacy.jpg" />
+    <Content Include="Content\Imagenes\Entrenadores\tanner.jpg" />
+    <Content Include="Content\Imagenes\Entrenamientos\MG_Enigma.jpg" />
+    <Content Include="Content\Imagenes\Entrenamientos\MG_One.jpg" />
+    <Content Include="Content\Imagenes\Entrenamientos\MG_Strength.jpg" />
+    <Content Include="Content\Imagenes\Entrenamientos\MG_Von.jpg" />
+    <Content Include="Content\Imagenes\Entrenamientos\One_NCFS.jpg" />
+    <Content Include="Content\Imagenes\Entrenamientos\One_Stress.jpg" />
+    <Content Include="Content\Imagenes\Entrenamientos\One_Transformation.jpg" />
+    <Content Include="Content\Imagenes\Entrenamientos\WL_1.jpg" />
+    <Content Include="Content\Imagenes\Entrenamientos\WL_2.jpg" />
+    <Content Include="Content\Imagenes\Entrenamientos\WL_3.jpg" />
+    <Content Include="Content\Imagenes\Entrenamientos\WL_4.jpg" />
+    <Content Include="Content\Imagenes\Entrenamientos\WL_5.jpg" />
     <Content Include="Content\Imagenes\Icons\HomeGeneral_Assessment.PNG" />
     <Content Include="Content\Imagenes\Icons\HomeGeneral_Motivation.PNG" />
     <Content Include="Content\Imagenes\Icons\HomeGeneral_Nutritional.PNG" />
@@ -211,6 +231,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Entrenadores.cs" />
+    <Compile Include="Models\Entrenamientos.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -232,7 +253,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Imagenes\Entrenadores\" />
     <Folder Include="Views\Fotos\" />
   </ItemGroup>
   <PropertyGroup>

@@ -1,1 +1,43 @@
-﻿
+﻿@model  FitocracyFinal.Models.Entrenamientos
+
+<style>
+    .redondo img {
+        border: 2px solid grey;
+        margin: 0;
+        padding: 0;
+        border-radius: 800px;
+        overflow: hidden;
+    }
+</style>
+@{
+    var entrenador = //Hacer una petAjax para recuperar este entrenador  
+}
+
+<div class="container" style="width:350px; height:600px; position:relative; background:#fff; padding-top:25px; ">
+    <div>
+        @*Redireccion a detalle de entrenamiento*@
+        <a href="@Url.Action("detalleEntrenamiento", "Coach", new { id = Model.Id_Entrenador  })"> 
+            <img src='@Url.Action("showFotoEntrenamiento", "Image", new { id = Model._id })' height="300" width="300" />
+        </a>
+    </div>
+
+    <div class="redondo" style="display:inline-block; background:#724788; color:#fff; width:300px; vertical-align:top; text-align:left; padding:10px">
+        <img src='@Url.Action("showEntrenador", "Image", new { id = Model.Id_Entrenador })' height="50" width="50" />
+        <p style="font-size:medium; display:inline"> @entrenador.Nombre @entrenador.Apellidos</p>
+    </div>
+
+    <h3>@Model.NombreEntrenamiento</h3>
+    <p>@Model.Descripcion</p>
+    <div class="center">
+        @*Redireccion a detalle de entrenamiento*@
+        <a href="@Url.Action("DetalleEntrenamiento", "Coach", new { id = Model.Id_Entrenamiento, idEntrenador = entrenador.Id_Entrenador  })">
+            <input type="submit" value=" $ @Model.Precio / month" class="btn button-entrenamiento btn-block" />
+        </a>
+    </div>
+</div>
+
+<script>
+
+</script>
+
+

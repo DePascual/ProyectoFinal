@@ -24,5 +24,21 @@ namespace FitocracyFinal.Controllers
             var img = collection.AsQueryable().Where(x => x._id == id).Select(x => x.Foto).FirstOrDefault();
             return File(img, "image/jpg");
         }
+
+
+        public ActionResult showFotoEntrenamiento(string id)
+        {
+            var collection = _dbContext.GetDatabase().GetCollection<Entrenamientos>("entrenamientos");
+            var img = collection.AsQueryable().Where(x => x._id == id).Select(x => x.Foto).FirstOrDefault();
+            return File(img, "image/jpg");
+        }
+
+
+        public ActionResult showEntrenador(string id)
+        {
+            var collection = _dbContext.GetDatabase().GetCollection<Entrenadores>("entrenadores");
+            var img = collection.AsQueryable().Where(x => x._id == id).Select(x => x.Foto).FirstOrDefault();
+            return File(img, "image/jpg");
+        }
     }
 }

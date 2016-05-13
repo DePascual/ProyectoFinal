@@ -29,7 +29,7 @@
                         $('#uPass').removeClass('ng-valid').addClass('ng-invalid');
                     }
                     else {
-                        $window.sessionStorage["userInfo"] = JSON.stringify(msg.data);
+                        $window.sessionStorage["infoUsuario"] = JSON.stringify(msg.data);
                         window.location.href = "/ZonaUsuarios/Index";
                         //$http.post("/ZonaUsuarios/Index", { "usuario": msg.data }).success(function () { alert(ok)})
                     }
@@ -42,10 +42,15 @@
         $scope.irARegistro = function () {
             $("#modalLogin").modal('hide');
             window.location.href = "/#/Registro";
-        }
+        };
     
         $scope.alertmsg = function () {
             $("#errorLogin").css('display', 'block');
+        };
+
+        $scope.cerrar = function () {
+            $("#modalLogin").modal('hide');
+            window.location.href = "/#/Home"
         };
 
     });

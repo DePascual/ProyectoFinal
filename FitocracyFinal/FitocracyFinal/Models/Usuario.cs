@@ -1,5 +1,7 @@
-﻿using MongoDB.Bson;
+﻿using FitocracyFinal.Controllers;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -176,5 +178,20 @@ namespace FitocracyFinal.Models
                 _Birthday = value;
             }
         }
+
+        public Usuario usuarioById(string id)
+        {
+            try
+            {
+                MongoDBcontext _dbContext = new MongoDBcontext();
+                var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
+                return collection.AsQueryable().Where(x => x._id == id).Select(x => (Usuario)x).SingleOrDefault();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
     }
+
 }

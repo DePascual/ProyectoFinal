@@ -21,22 +21,7 @@ namespace FitocracyFinal.Controllers
         // GET: ZonaUsuarios
         public ActionResult Index()
         {
-            #region Metiendo en sesion solo id
-            //string idUsu = (string)Session["idUsu"];
-            //Usuario usu = new Usuario();
-            //try
-            //{
-            //    var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
-            //    usu = collection.AsQueryable().Where(x => x._id == idUsu).Select(x => (Usuario)x).SingleOrDefault();
-            //}
-            //catch (Exception)
-            //{
-            //    throw;
-            //}
-            //return View(usu);
-            #endregion
-
-            Usuario usu = (Usuario)Session["infoUsu"];
+            Usuario usu = (Usuario)Session["infoUsuario"];
             return View(usu);
         }
 

@@ -1,13 +1,58 @@
-﻿
+﻿@using System.Web.Optimization
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>COACH</title>
+    <title>FITOCRACY COACHING</title>
+    @Styles.Render("~/Content/bootstrap.css")
+    @Styles.Render("~/Content/miCSS.css")
+    @Styles.Render("~/css/font-awesome.css")
 </head>
-<body>
-    <div> 
+<body ng-app="Fitocracy">
+    <nav class="navbar navbar-default">
+        <div class="container" id="menu">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/#/Home" menu>FITOCRACY</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/#/Home" menu><i class="fa fa-hand-o-up"></i> Home</a></li>
+                <li class="active"><a href="/#/Coach" menu><i class="fa fa-play"></i> Hire a Coach</a></li>
+                <li><a href="/#/About" menu><i class="fa fa-hand-o-up"></i> About Us</a></li>
+                <li><a href="/#/Login" menu><i class="fa fa-user"></i> Login</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div ng-view>
+        </div>
     </div>
+    <footer>
+        <hr />
+        <p>&copy; @DateTime.Now.Year - FITOCRACY</p>
+    </footer>
+
+    @Scripts.Render("~/Scripts/angular.js")
+    @Scripts.Render("~/Scripts/angular-route.js")
+    @Scripts.Render("~/Scripts/angular-resource.js")
+    @Scripts.Render("~/Scripts/angular-messages.js")
+
+    @Scripts.Render("~/Scripts/jquery-2.2.3.js")
+    @Scripts.Render("~/Scripts/bootstrap.js")
+
+    @Scripts.Render("~/Scripts/FitocracyModule.js")
+
+    @Scripts.Render("~/Scripts/Controllers/loginCtrl.js")
+    @Scripts.Render("~/Scripts/Controllers/registroCtrl.js")
+
+    @Scripts.Render("~/Scripts/Services/loginService.js")
+    @Scripts.Render("~/Scripts/Services/registroService.js")
+
+    <script>
+        $('a[menu]').click(function () {
+            $('#menu li').removeClass('active');
+            $(this).parent().addClass('active');
+        })
+    </script>v
 </body>
 </html>

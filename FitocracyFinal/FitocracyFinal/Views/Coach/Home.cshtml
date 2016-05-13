@@ -1,4 +1,29 @@
-﻿<div class="jumbotron text-center">
-    <h1>COACH HOME</h1>
+﻿<div class="text-center">
+    <div class="row">
+        <div class="col-lg-1"></div>
+            <div class="col-lg-5 pull-left">
+                <img src="~/Content/Imagenes/logo.png" style="float:left" />
+                <p style="font-size:35px; line-height:28px; float:right">COACHING</p>
+            </div>
+            <div class="col-lg-4 pull-right">
+                <p style="font-size:15px;">Already a Fitocrat?  <a href="/#/Login" class="button-login">Login</a></p>
+            </div>
+        </div>
+    <br />
+    <div class="center" style="position:relative; background:url(../../Content/Imagenes/Portadas/portada.jpg); width:90%; height:480px">
+        <div id="textoImg" style=" float:right">
+            <h2 style="text-align:center; color:#FFF">2016 is Your Year</h2>
+            <p style="color:#8A9599; text-align:center">Fit fitness into your life this year. Track your <br /> develop healthy habits, and reach your <br />goals with the help of our expert coaches.</p>
+            <button id="buttonLogin" class="btn btn-primary btn-lg center" style="width:300px; float:right">Join Today</button>
+        </div>
+    </div>
+    <hr />
+    @Html.Partial("~/Views/PartialsViews/ServicesPV.cshtml")
+
+    <div class="row" style="background-color:#EFF1F3">
+        <div class="col-lg-12" id="loss">
+            @Html.Partial("~/Views/PartialsViews/EntrenamientoSmall.cshtml")
+        </div>
+    </div>
 </div>
 

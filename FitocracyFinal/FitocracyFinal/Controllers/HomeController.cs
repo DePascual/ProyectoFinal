@@ -59,17 +59,22 @@ namespace FitocracyFinal.Controllers
 
         public string loginRecupUsuario(Usuario usuario)
         {
-            //Ojo!! Devuelve todo el usuario. Cuidado con password y tarjetas => ENCRIPTAR!!!
             Usuario usu = new Usuario();
             try
             {
                 var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
-                usu = collection.AsQueryable().Where(x => x.Username == usuario.Username && x.Password == usuario.Password).Select(x => (Usuario)x).SingleOrDefault();
-                //Session["idUsu"] = usu._id;
+                var datosUsu = collection.AsQueryable()
+                    .Where(x => x.Username == usuario.Username && x.Password == usuario.Password)
+                    .Select(x => new Usuario
+                        {
+                            _id = (string)x._id,
+                            Username = (string)x.Username,
+                            Email = (string)x.Email
+                    }).SingleOrDefault();
 
-                //Meto en Session el usuario y en Session Storage
-                Session["infoUsu"] = (Usuario)usu;
-                return JsonConvert.SerializeObject(usu);
+                Session["infoUsuario"] = datosUsu;
+
+                return JsonConvert.SerializeObject(datosUsu);
             }
             catch (Exception)
             {

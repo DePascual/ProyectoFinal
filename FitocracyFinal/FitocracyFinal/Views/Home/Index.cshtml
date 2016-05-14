@@ -9,18 +9,19 @@
     @Styles.Render("~/Content/miCSS.css")
     @Styles.Render("~/css/font-awesome.css")
     @Styles.Render("~/Content/ui-bootstrap-csp.css")
+    <base href="/">
 </head>
 <body ng-app="Fitocracy">
     <nav class="navbar navbar-default">
         <div class="container" id="menu">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/#/Home" menu>FITOCRACY</a>
+                <a class="navbar-brand" href="/Home" menu>FITOCRACY</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/#/Home" menu class="active"><i class="fa fa-hand-o-up"></i> Home</a></li>
-                <li><a href="/#/Coach" menu><i class="fa fa-play"></i> Hire a Coach</a></li>
-                <li><a href="/#/About" menu><i class="fa fa-hand-o-up"></i> About Us</a></li>
-                <li><a href="/#/Login" menu><i class="fa fa-user"></i> Login</a></li>
+                <li><a href="/Home" menu class="active"><i class="fa fa-hand-o-up"></i> Home</a></li>
+                <li><a href="/Coach" menu><i class="fa fa-play"></i> Hire a Coach</a></li>
+                <li><a href="/About" menu><i class="fa fa-hand-o-up"></i> About Us</a></li>
+                <li><a href="/Login" menu><i class="fa fa-user"></i> Login</a></li>
             </ul>
         </div>
     </nav>
@@ -36,7 +37,7 @@
     @Scripts.Render("~/Scripts/angular.js")
     @Scripts.Render("~/Scripts/angular-route.js")
     @Scripts.Render("~/Scripts/angular-resource.js")
-    @Scripts.Render("~/Scripts/ui-bootstrap-tpls-0.6.0.min.js")
+    @Scripts.Render("~/Scripts/angular-ui/ui-bootstrap.js")
     @Scripts.Render("~/Scripts/angular-ui/ui-bootstrap-tpls.js")
     @Scripts.Render("~/Scripts/angular-animate.js")
     @Scripts.Render("~/Scripts/angular-touch.js")

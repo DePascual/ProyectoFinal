@@ -1,6 +1,6 @@
 ﻿var Fitocracy = angular.module('Fitocracy', ['ngRoute', 'ui.bootstrap', 'ngAnimate']);
 
-var configFunction = function ($routeProvider) {
+var configFunction = function ($routeProvider, $locationProvider) {
     $routeProvider.
          when('/', {
              templateUrl: 'Home/Home',
@@ -10,7 +10,7 @@ var configFunction = function ($routeProvider) {
         })
         .when('/Coach', {
             templateUrl: 'Coach/Home',
-            controller: 'entrenadoresCtrl'
+            //controller: 'entrenadoresCtrl'
         })
         .when('/About', {
             templateUrl: 'Home/About',
@@ -23,8 +23,9 @@ var configFunction = function ($routeProvider) {
             templateUrl: 'Home/Registro',
             controller: 'registroCtrl'
         });
+    $locationProvider.html5Mode(true).hashPrefix('!');
 }
-configFunction.$inject = ['$routeProvider'];
+configFunction.$inject = ['$routeProvider', '$locationProvider'];
 
 var compareTo = function () {
     return {

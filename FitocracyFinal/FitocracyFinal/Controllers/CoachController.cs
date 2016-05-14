@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FitocracyFinal.ViewModels;
 
 namespace FitocracyFinal.Controllers
 {
@@ -25,13 +26,33 @@ namespace FitocracyFinal.Controllers
             return View();
         }
 
+
+        //Post
+        [HttpPost]
+        public JsonResult GetEntrenadores()
+        {
+            var collection = _dbContext.GetDatabase().GetCollection<Entrenadores>("entrenadores");
+            var ret = collection.AsQueryable().Select(x => (Entrenadores)x).ToList();
+            return Json(ret);           
+        }
+
         //PartialsViews
         public ActionResult Home()
         {
             var collection = _dbContext.GetDatabase().GetCollection<Entrenamientos>("entrenamientos");
             List<Entrenamientos> entrenamientosList = collection.AsQueryable().Select(x => (Entrenamientos)x).ToList();
 
-            return View(entrenamientosList);
+            var collection2 = _dbContext.GetDatabase().GetCollection<Entrenadores>("entrenadores");
+            List<Entrenadores> entrenadoresList = collection2.AsQueryable().Select(x => (Entrenadores)x).ToList();
+
+            EntrenamientoEntrenadoresVM vM = new EntrenamientoEntrenadoresVM(entrenadoresList, entrenamientosList);
+
+            return View(vM);
+        }
+
+        public ActionResult detalleEntrenamiento(EntrenamientoEntrenadoresVM datos)
+        {
+            return View(datos);
         }
 
         #region Carga collection "Entrenadores" MongoDb

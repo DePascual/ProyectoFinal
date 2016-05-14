@@ -1,4 +1,4 @@
-﻿var Fitocracy = angular.module('Fitocracy', ['ngRoute', 'ngMessages']);
+﻿var Fitocracy = angular.module('Fitocracy', ['ngRoute', 'ui.bootstrap', 'ngAnimate']);
 
 var configFunction = function ($routeProvider) {
     $routeProvider.
@@ -10,6 +10,7 @@ var configFunction = function ($routeProvider) {
         })
         .when('/Coach', {
             templateUrl: 'Coach/Home',
+            controller: 'entrenadoresCtrl'
         })
         .when('/About', {
             templateUrl: 'Home/About',

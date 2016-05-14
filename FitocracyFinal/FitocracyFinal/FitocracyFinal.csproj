@@ -253,6 +253,7 @@
     <Content Include="Scripts\jquery-2.2.3.min.map" />
     <Content Include="Views\PartialsViews\ServicesPV.cshtml" />
     <Content Include="Views\PartialsViews\EntrenamientoSmall.cshtml" />
+    <Content Include="Views\PartialsViews\DetalleEntrenamientoPV.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

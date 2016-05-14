@@ -10,7 +10,7 @@
 
         $scope.irALogin = function () {
             $("#modalRegistro").modal('hide');
-            window.location.href = "/#/Login";
+            window.location.href = "/#!/Login";
         }
 
         $scope.registrar = function (isValid) {

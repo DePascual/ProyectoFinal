@@ -41,7 +41,7 @@
 
         $scope.irARegistro = function () {
             $("#modalLogin").modal('hide');
-            window.location.href = "/#/Registro";
+            window.location.href = "/#!/Registro";
         };
     
         $scope.alertmsg = function () {
@@ -50,7 +50,7 @@
 
         $scope.cerrar = function () {
             $("#modalLogin").modal('hide');
-            window.location.href = "/#/Home"
+            window.location.href = "/Home"
         };
 
     });

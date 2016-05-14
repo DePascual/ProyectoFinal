@@ -26,16 +26,6 @@ namespace FitocracyFinal.Controllers
             return View();
         }
 
-
-        //Post
-        [HttpPost]
-        public JsonResult GetEntrenadores()
-        {
-            var collection = _dbContext.GetDatabase().GetCollection<Entrenadores>("entrenadores");
-            var ret = collection.AsQueryable().Select(x => (Entrenadores)x).ToList();
-            return Json(ret);           
-        }
-
         //PartialsViews
         public ActionResult Home()
         {

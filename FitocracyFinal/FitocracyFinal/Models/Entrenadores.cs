@@ -12,6 +12,7 @@ namespace FitocracyFinal.Models
     [BsonIgnoreExtraElements(true)]
     public class Entrenadores
     {
+      
         [BsonRepresentation(BsonType.ObjectId)]
         public string _id { get; set; }
         public string Nombre { get; set; }

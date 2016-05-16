@@ -15,9 +15,9 @@
     Entrenamientos entrenamiento = Model.entrenamiento;
 }
 
-<div class="container" style="height:650px; background:#fff; padding-top:25px;">
+<div class="container" style="height:650px; background:#fff; padding-top:25px;" ng-controller="detalleEntrenamientoCtrl">
     <div>
-        <a href='/#!@Url.Action("detalleEntrenamiento", "Coach", new { datos = entrenamiento._id})'>
+        <a ng-href=@Url.Action("detalleEntrenamiento", "Coach", new { idEntrenador = entrenador._id, idEntrenamiento = entrenamiento._id})>
             <img src=@Url.Action("showFotoEntrenamiento", "Fotos", new { id = entrenamiento._id }) height="300" width="300" />
         </a>
     </div>
@@ -31,7 +31,7 @@
     <p>@entrenamiento.Descripcion</p>
 
     <div class="center">
-        <a href='@Url.Action("detalleEntrenamiento", "Coach", new { datos = entrenamiento._id})'>
+        <a ng-href=@Url.Action("detalleEntrenamiento", "Coach", new { idEntrenador = entrenador._id, idEntrenamiento = entrenamiento._id})>
             <input type="submit" value=" $ @entrenamiento.Precio / month" class="btn button-entrenamiento btn-block" />
         </a>
     </div>

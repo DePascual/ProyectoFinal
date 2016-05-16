@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FitocracyFinal.ViewModels;
+using Newtonsoft.Json;
 
 namespace FitocracyFinal.Controllers
 {
@@ -40,9 +41,17 @@ namespace FitocracyFinal.Controllers
             return View(vM);
         }
 
-        public ActionResult detalleEntrenamiento(EntrenamientoEntrenadoresVM datos)
+
+        public ActionResult detalleEntrenamiento(string idEntrenador, string idEntrenamiento)
         {
-            return View(datos);
+            Entrenadores entrenador = new Entrenadores();
+            entrenador = entrenador.entrenadorById(idEntrenador);
+
+            Entrenamientos entrenamiento = new Entrenamientos();
+            entrenamiento = entrenamiento.entrenamientoById(idEntrenamiento);
+
+            EntrenamientoEntrenadoresVM vM = new EntrenamientoEntrenadoresVM(entrenador, entrenamiento);
+            return View(vM);
         }
 
         #region Carga collection "Entrenadores" MongoDb

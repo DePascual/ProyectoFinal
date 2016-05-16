@@ -32,7 +32,7 @@ namespace FitocracyFinal.Models
             {
                 MongoDBcontext _dbContext = new MongoDBcontext();
                 var collection = _dbContext.GetDatabase().GetCollection<Entrenamientos>("entrenamientos");
-                return collection.AsQueryable().Where(x => x._id == id).Select(x => (Entrenamientos)x).SingleOrDefault();
+                return collection.AsQueryable().Where(x => x._id == id).Select(x => x).SingleOrDefault();
             }
             catch (Exception)
             {

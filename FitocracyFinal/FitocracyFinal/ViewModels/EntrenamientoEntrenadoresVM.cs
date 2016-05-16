@@ -7,12 +7,14 @@ namespace FitocracyFinal.ViewModels
 {
     public class EntrenamientoEntrenadoresVM
     {
-       
+
         public List<Entrenadores> entrenadoresList { get; set; }
         public List<Entrenamientos> entrenamientosList { get; set; }
 
         public Entrenadores entrenador { get; set; }
         public Entrenamientos entrenamiento { get; set; }
+
+        public EntrenamientoEntrenadoresVM() { }
 
         public EntrenamientoEntrenadoresVM(List<Entrenadores> entrenadoresList, List<Entrenamientos> entrenamientosList)
         {
@@ -24,5 +26,6 @@ namespace FitocracyFinal.ViewModels
             this.entrenador = entrenador;
             this.entrenamiento = entrenamiento;
         }
+
     }
 }

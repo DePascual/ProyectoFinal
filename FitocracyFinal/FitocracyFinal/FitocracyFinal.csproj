@@ -202,7 +202,6 @@
     <Content Include="Scripts\angular-touch.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Controllers\entrenadoresCtrl.js" />
-    <Content Include="Scripts\Controllers\entrenadoresFotosCtrl.js" />
     <Content Include="Scripts\Controllers\loginCtrl.js" />
     <Content Include="Scripts\Controllers\registroCtrl.js" />
     <Content Include="Scripts\FitocracyModule.js" />
@@ -253,7 +252,7 @@
     <Content Include="Scripts\jquery-2.2.3.min.map" />
     <Content Include="Views\PartialsViews\ServicesPV.cshtml" />
     <Content Include="Views\PartialsViews\EntrenamientoSmall.cshtml" />
-    <Content Include="Views\PartialsViews\DetalleEntrenamientoPV.cshtml" />
+    <Content Include="Views\Coach\detalleEntrenamiento.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

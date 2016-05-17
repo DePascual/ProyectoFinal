@@ -1,20 +1,72 @@
-﻿@model FitocracyFinal.Models.Usuario
-@using MongoDB.Bson
+﻿@using System.Web.Optimization
+@using FitocracyFinal.Models
+@model FitocracyFinal.Models.Usuario
 <!DOCTYPE html>
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>ZONA USUARIOS</title>
+    <title>FITOCRACY USER ZONE</title>
+    @Styles.Render("~/Content/bootstrap.css")
+    @Styles.Render("~/Content/ui-bootstrap-csp.css")
+    @Styles.Render("~/Content/miCSS.css")
+    @Styles.Render("~/css/font-awesome.css")
+    <base href="/">
 </head>
-<body>
-    <div>
-        ZONA USUARIOS
-
-        @Model.Username
-        @Model.Email
-        <img src='@Url.Action("downloadPhoto", "Fotos", new { id= Model._id })' height="300" width="300" />
-       
-        
+<body ng-app="User">
+    @{Usuario usuario = (Usuario)Model;}
+    
+    <nav class="navbar navbar-default">
+        <div class="container" id="menu" ng-controller="userCtrl">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/Home" menu>FITOCRACY</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="/Home" menu><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="/You" menu><i class="fa fa-user"></i> You</a></li>
+                <li><a href="/Track" menu><i class="fa fa-heartbeat"></i> Track</a></li>
+                <li><a href="/Coach" menu><i class="fa fa-play"></i> Coaching</a></li>
+                <li><a href="/Connect" menu><i class="fa fa-envelope"></i> Connect</a></li>
+                <li><a href="/Leaders" menu><i class="fa fa-trophy"></i> Leaders</a></li>
+                <li class="dropdown" id="dropUsu">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:#0079ff; font-weight:bold">@usuario.Username <span class="caret"></span></a>
+                    <ul class="dropdown-menu" id="listUsu">
+                        <li><a value="custom" href="/You">Custom You</a></li>
+                        <li><a value="signOut" ng-href=@Url.Action("SignOut", "ZonaUsuarios", new { idUsuario = usuario._id }) ng-click="goHome()">Sign Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div ng-view>
+        </div>
     </div>
+    <footer>
+        <hr />
+        <p>&copy; @DateTime.Now.Year - FITOCRACY</p>
+    </footer>
+
+    @Scripts.Render("~/Scripts/angular.js")
+    @Scripts.Render("~/Scripts/angular-route.js")
+    @Scripts.Render("~/Scripts/angular-resource.js")
+    @Scripts.Render("~/Scripts/angular-ui/ui-bootstrap.js")
+    @Scripts.Render("~/Scripts/angular-ui/ui-bootstrap-tpls.js")
+    @Scripts.Render("~/Scripts/angular-animate.js")
+    @Scripts.Render("~/Scripts/angular-touch.js")
+
+    @Scripts.Render("~/Scripts/jquery-2.2.3.js")
+    @Scripts.Render("~/Scripts/bootstrap.js")
+
+    @Scripts.Render("~/Scripts/UserModule.js")
+    @Scripts.Render("~/Scripts/Controllers/userCtrl.js")
+
+
+    <script>
+        $('a[menu]').click(function () {
+            $('#menu li').removeClass('active');
+            $(this).parent().addClass('active');
+        })
+    </script>v
 </body>
 </html>

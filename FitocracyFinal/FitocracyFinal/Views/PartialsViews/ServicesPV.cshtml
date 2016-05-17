@@ -1,7 +1,15 @@
-﻿<div class="row portada">
-    <h3>How Does Fitocracy Help Me?</h3>
-    <p style="font-size:21px">Get your very own personal trainer that provides everything you <br /> need to get in the best shape of your life.</p>
-    <br />
+﻿@model string
+
+<div class="row portada">
+    @{
+        if (Model != "usu")
+        {
+            <h3>How Does Fitocracy Help Me?</h3>
+            <p style="font-size:21px">Get your very own personal trainer that provides everything you <br /> need to get in the best shape of your life.</p>
+            <br />
+        }
+    }
+    
     <!--COLUMNA IZQUIERDA-->
     <div class="col-lg-6 text-left portada">
         <h4 style="vertical-align:middle"><img src="~/Content/Imagenes/Icons/HomeGeneral_Assessment.PNG" class="pull-left" />FITNESS ASSESSMENT</h4>

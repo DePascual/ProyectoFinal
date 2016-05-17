@@ -157,6 +157,7 @@
     <Content Include="Content\Imagenes\logo.png" />
     <Content Include="Content\Imagenes\portadaServicios.PNG" />
     <Content Include="Content\Imagenes\Portadas\portada.jpg" />
+    <Content Include="Content\Imagenes\Portadas\portadaZonaUsu.jpg" />
     <Content Include="Content\Imagenes\Profiles\nophoto.png" />
     <Content Include="Content\miCSS.css" />
     <Content Include="Content\Site.css" />
@@ -204,6 +205,7 @@
     <Content Include="Scripts\Controllers\entrenadoresCtrl.js" />
     <Content Include="Scripts\Controllers\loginCtrl.js" />
     <Content Include="Scripts\Controllers\registroCtrl.js" />
+    <Content Include="Scripts\Controllers\userCtrl.js" />
     <Content Include="Scripts\FitocracyModule.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -216,6 +218,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Services\loginService.js" />
     <Content Include="Scripts\Services\registroService.js" />
+    <Content Include="Scripts\UserModule.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
@@ -253,6 +256,11 @@
     <Content Include="Views\PartialsViews\ServicesPV.cshtml" />
     <Content Include="Views\PartialsViews\EntrenamientoSmall.cshtml" />
     <Content Include="Views\Coach\detalleEntrenamiento.cshtml" />
+    <Content Include="Views\ZonaUsuarios\Home.cshtml" />
+    <Content Include="Views\ZonaUsuarios\You.cshtml" />
+    <Content Include="Views\ZonaUsuarios\Track.cshtml" />
+    <Content Include="Views\ZonaUsuarios\Connect.cshtml" />
+    <Content Include="Views\ZonaUsuarios\Leaders.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

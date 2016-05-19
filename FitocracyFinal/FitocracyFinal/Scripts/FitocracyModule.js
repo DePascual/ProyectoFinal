@@ -13,8 +13,8 @@ var configFunction = function ($routeProvider, $locationProvider) {
             //controller: 'entrenadoresCtrl'
         })
          .when('/Coach/detalleEntrenamiento', {
-             templateUrl:function(params){
-                 return  'Coach/detalleEntrenamiento?idEntrenador=' + params.idEntrenador + '&idEntrenamiento='+params.idEntrenamiento;
+             templateUrl: function (params) {
+                 return 'Coach/detalleEntrenamiento?idEntrenador=' + params.idEntrenador + '&idEntrenamiento=' + params.idEntrenamiento;
              }
          })
         .when('/About', {
@@ -27,8 +27,37 @@ var configFunction = function ($routeProvider, $locationProvider) {
         .when('/Registro', {
             templateUrl: 'Home/Registro',
             controller: 'registroCtrl'
+        })
+
+
+
+
+         .when('/ZonaUsuarios', {
+             templateUrl: 'ZonaUsuarios/Home',
+             controller: 'userCtrl'
+         })
+        .when('/Home_ZU', {
+            templateUrl: 'ZonaUsuarios/Home',
+        })
+         .when('/You', {
+             templateUrl: 'ZonaUsuarios/You',
+         })
+        .when('/Track', {
+            templateUrl: 'ZonaUsuarios/Track',
+        })
+        .when('/Connect', {
+            templateUrl: 'ZonaUsuarios/Connect',
+        })
+        .when('/Leaders', {
+            templateUrl: 'ZonaUsuarios/Leaders',
+        })
+        .when('/ZonaUsuarios/SignOut', {
+            templateUrl: function (params) {
+                return 'ZonaUsuarios/SignOut?idUsuario=' + params.idUsuario;
+            },
+           controller: 'userCtrl'
         });
-    $locationProvider.html5Mode(true).hashPrefix('!');
+    //$locationProvider.html5Mode(true).hashPrefix('!');
 }
 configFunction.$inject = ['$routeProvider', '$locationProvider'];
 

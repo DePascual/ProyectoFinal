@@ -20,10 +20,24 @@ namespace FitocracyFinal.Controllers
             _dbContext = new MongoDBcontext();
         }
 
+        private Usuario _usuario;
+        public Usuario usuario
+        {
+            get
+            {
+                return _usuario = (Usuario)Session["infoUsuario"];
+            }
+            set
+            {
+                this._usuario = value;
+            }
+        }
+        
+        
         //View que trabaja a modo de Layout de la sección
         public ActionResult Index()
-        {         
-            return View();
+        {
+            return View(usuario);
         }
 
         #region Partials Views => Carga con Angular

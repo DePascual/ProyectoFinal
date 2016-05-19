@@ -1,5 +1,7 @@
-﻿angular.module('Fitocracy')
-    .controller('loginCtrl', function ($scope, loginService, $window) {
+﻿//var jq = $.noConflict();
+
+angular.module('Fitocracy')
+    .controller('loginCtrl', function ($scope, loginService, $window, $location) {
 
         //Muestra la ventana emergente
         //$("#modalRegistro").modal('hide');
@@ -30,7 +32,11 @@
                     }
                     else {
                         $window.sessionStorage["infoUsuario"] = JSON.stringify(msg.data);
-                        window.location.href = "ZonaUsuarios";
+                        $location.path("/ZonaUsuarios");
+                        //$window.location.href = "ZonaUsuarios";
+                        $("#modalLogin").modal('hide');
+
+                      
                         //$http.post("/ZonaUsuarios/Index", { "usuario": msg.data }).success(function () { alert(ok)})
                     }
                 })
@@ -41,7 +47,7 @@
 
         $scope.irARegistro = function () {
             $("#modalLogin").modal('hide');
-            window.location.href = "/#!/Registro";
+            window.location.href = "#/Registro";
         };
     
         $scope.alertmsg = function () {
@@ -50,7 +56,7 @@
 
         $scope.cerrar = function () {
             $("#modalLogin").modal('hide');
-            window.location.href = "/Home"
+            window.location.href = "#/Home"
         };
 
     });

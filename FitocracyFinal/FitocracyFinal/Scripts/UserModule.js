@@ -3,7 +3,7 @@
 var configFunction = function ($routeProvider, $locationProvider) {
     $routeProvider.
          when('/', {
-             templateUrl: 'Home/Home',
+             templateUrl: 'ZonaUsuarios/Home',
          })
         .when('/ZonaUsuarios', {
             templateUrl: 'ZonaUsuarios/Home',
@@ -11,7 +11,7 @@ var configFunction = function ($routeProvider, $locationProvider) {
         .when('/Home', {
             templateUrl: 'ZonaUsuarios/Home',
         })
-         .when('/You', {
+         .when('ZonaUsuarios/You', {
              templateUrl: 'ZonaUsuarios/You',
          })
         .when('/Track', {
@@ -32,7 +32,7 @@ var configFunction = function ($routeProvider, $locationProvider) {
             },
             controller: 'userCtrl'
         });
-    $locationProvider.html5Mode(true).hashPrefix('!');
+   // $locationProvider.html5Mode(true).hashPrefix('!');
 }
 configFunction.$inject = ['$routeProvider', '$locationProvider'];
 

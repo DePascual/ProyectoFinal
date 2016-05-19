@@ -1,4 +1,6 @@
 ﻿using FitocracyFinal.Models;
+using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
 using System;
 using System.Collections.Generic;
@@ -20,17 +22,17 @@ namespace FitocracyFinal.Controllers
 
         // GET: ZonaUsuarios
         //View que trabaja a modo de Layout de la sección
-        public ActionResult Index()
-        {
-            Usuario usuario = (Usuario)Session["infoUsuario"];
-            return View(usuario);
-        }
+        //public ActionResult Index()
+        //{
+        //    Usuario usuario = (Usuario)Session["infoUsuario"];
+        //    return View(usuario);
+        //}
 
         //Partials Views
         public ActionResult Home()
         {
             Usuario usuario = (Usuario)Session["infoUsuario"];
-            return View(usuario);
+            return PartialView(usuario);
         }
         public ActionResult You()
         {
@@ -64,7 +66,7 @@ namespace FitocracyFinal.Controllers
             if (file != null)
             {
                 string pic = Path.GetFileName(file.FileName);
-                string path = Path.Combine(Server.MapPath("~/Content/Imagenes/profiles"), pic);
+                string path = Path.Combine(Server.MapPath("~/Content/Imagenes/Profiles"), pic);
                 file.SaveAs(path);
 
                 using (MemoryStream ms = new MemoryStream())
@@ -72,13 +74,29 @@ namespace FitocracyFinal.Controllers
                     file.InputStream.CopyTo(ms);
                     byte[] array = ms.GetBuffer();
 
-                    //dbController.uploadFoto(idUsu, array);
-                }
+                    try
+                    {
+                        var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
+                        var usu = collection.AsQueryable().Where(x => x._id == idUsu).FirstOrDefault();
+                        var fotoInicial = usu.Foto;
+                        usu.Foto = array;
+                        collection.Save(usu);
+                    
+                        //var usuMod = collection.AsQueryable().Where(x => x._id == idUsu).FirstOrDefault();
+                        //var fotoFinal = usuMod.Foto;
 
-                //System.IO.File.Delete(path);
+                    }
+                    catch (Exception e)
+                    {
+                        string exc = e.ToString();             
+                    }
+                 
+               }
+
+                System.IO.File.Delete(path);
             }
 
-            return RedirectToAction("You", "ZonaUsuarios");
+            return Redirect("http://localhost:2841/#/You");
         }
 
     }

@@ -13,7 +13,7 @@
     @Styles.Render("~/css/font-awesome.css")
     <base href="/">
 </head>
-<body ng-app="User">
+<body ng-app="Fitocracy">
     @{Usuario usuario = (Usuario)Model;}
     
     <nav class="navbar navbar-default">
@@ -23,11 +23,11 @@
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="/Home" menu><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="/You" menu><i class="fa fa-user"></i> You</a></li>
-                <li><a href="/Track" menu><i class="fa fa-heartbeat"></i> Track</a></li>
-                <li><a href="/Coach" menu><i class="fa fa-play"></i> Coaching</a></li>
-                <li><a href="/Connect" menu><i class="fa fa-envelope"></i> Connect</a></li>
-                <li><a href="/Leaders" menu><i class="fa fa-trophy"></i> Leaders</a></li>
+                <li><a href="#You" menu><i class="fa fa-user"></i> You</a></li>
+                <li><a href="#Track" menu><i class="fa fa-heartbeat"></i> Track</a></li>
+                <li><a href="#Coach" menu><i class="fa fa-play"></i> Coaching</a></li>
+                <li><a href="#Connect" menu><i class="fa fa-envelope"></i> Connect</a></li>
+                <li><a href="#Leaders" menu><i class="fa fa-trophy"></i> Leaders</a></li>
                 <li class="dropdown" id="dropUsu">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:#0079ff; font-weight:bold">@usuario.Username <span class="caret"></span></a>
                     <ul class="dropdown-menu" id="listUsu">
@@ -67,6 +67,8 @@
             $('#menu li').removeClass('active');
             $(this).parent().addClass('active');
         })
-    </script>v
+
+       
+    </script>
 </body>
 </html>

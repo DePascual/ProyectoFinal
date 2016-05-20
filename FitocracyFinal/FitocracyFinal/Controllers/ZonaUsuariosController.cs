@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -98,6 +99,22 @@ namespace FitocracyFinal.Controllers
             }
 
             return Redirect("http://localhost:2841/#/You");
+        }
+
+        [HttpPost]
+        public string recuperaWorkouts()
+        {
+            try
+            {
+                var collection = _dbContext.GetDatabase().GetCollection<Tracks>("tracks");
+                var workouts =  collection.FindAll().ToList();
+                return JsonConvert.SerializeObject(workouts);
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }         
         }
 
     }

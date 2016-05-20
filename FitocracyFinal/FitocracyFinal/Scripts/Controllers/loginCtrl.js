@@ -32,6 +32,7 @@ angular.module('Fitocracy')
                     }
                     else {
                         $window.sessionStorage["infoUsuario"] = JSON.stringify(msg.data);
+
                         $location.path("/ZonaUsuarios");
                         //$window.location.href = "ZonaUsuarios";
                         $("#modalLogin").modal('hide');

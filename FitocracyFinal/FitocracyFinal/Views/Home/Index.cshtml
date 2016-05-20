@@ -34,13 +34,13 @@
                 <li usu="true" style="display:none"><a href="#Leaders" menu><i class="fa fa-trophy"></i> Leaders</a></li>
             
 
-                @*<li usu="usu" style="display:none" class="dropdown" id="dropUsu">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:#0079ff; font-weight:bold">Model.Username <span class="caret"></span></a>
+                <li usu="true" style="display:none" class="dropdown" id="dropUsu" activo="false">
+                    @*<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:#0079ff; font-weight:bold">{{usuario.Username}}<span class="caret"></span></a>
                     <ul class="dropdown-menu" id="listUsu">
                         <li><a value="custom" href="/You">Custom You</a></li>
-                        <li><a value="signOut" ng-href=@Url.Action("SignOut", "ZonaUsuarios", new { idUsuario = Model._id }) ng-click="goHome()">Sign Out</a></li>
-                    </ul>
-                </li>*@
+                        <li><a value="signOut" ng-href="@Url.Action("SignOut", "ZonaUsuarios")/{{usuario._id}}" ng-click="goHome()">Sign Out</a></li>                 
+                    </ul>*@
+                </li>
 
 
             </ul>

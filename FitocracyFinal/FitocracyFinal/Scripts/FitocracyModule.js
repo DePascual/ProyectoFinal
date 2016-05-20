@@ -5,6 +5,9 @@ var configFunction = function ($routeProvider, $locationProvider) {
          when('/', {
              templateUrl: 'Home/Home',
          })
+        .when('/Index', {
+            templateUrl: 'Home/Index',
+        })
         .when('/Home', {
             templateUrl: 'Home/Home',
         })

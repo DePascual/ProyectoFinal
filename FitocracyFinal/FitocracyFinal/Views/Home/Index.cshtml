@@ -20,29 +20,16 @@
                 <a class="navbar-brand" href="#/Home" menu>FITOCRACY</a>
             </div>
             <ul class="nav navbar-nav navbar-right" ng-controller="userCtrl">
+                <li usu="false" style="display:block" id="linkHome"><a href="#/Home" menu class="active"><i class="fa fa-home"></i> Home</a></li>
+                <li usu="false" style="display:block"><a href="#/Coach" menu><i class="fa fa-play"></i> Hire a Coach</a></li>
+                <li usu="false" style="display:block"><a href="#/About" menu><i class="fa fa-hand-o-up"></i> About Us</a></li>
+                <li usu="false" style="display:block" id="linkLogin"><a href="#/Login" menu><i class="fa fa-user"></i> Login</a></li>
 
-
-                <li><a href="#/Home" menu class="active"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="#/Coach" menu><i class="fa fa-play"></i> Hire a Coach</a></li>
-                <li><a href="#/About" menu><i class="fa fa-hand-o-up"></i> About Us</a></li>
-                <li><a href="#/Login" menu><i class="fa fa-user"></i> Login</a></li>
-
-                <li usu="true" style="display:none"><a href="#You" menu><i class="fa fa-user"></i> You</a></li>
-                <li usu="true" style="display:none"><a href="#Track" menu><i class="fa fa-heartbeat"></i> Track</a></li>
-                <li usu="true" style="display:none"><a href="#Coach" menu><i class="fa fa-play"></i> Coaching</a></li>
-                <li usu="true" style="display:none"><a href="#Connect" menu><i class="fa fa-envelope"></i> Connect</a></li>
-                <li usu="true" style="display:none"><a href="#Leaders" menu><i class="fa fa-trophy"></i> Leaders</a></li>
-            
-
-                <li usu="true" style="display:none" class="dropdown" id="dropUsu" activo="false">
-                    @*<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:#0079ff; font-weight:bold">{{usuario.Username}}<span class="caret"></span></a>
-                    <ul class="dropdown-menu" id="listUsu">
-                        <li><a value="custom" href="/You">Custom You</a></li>
-                        <li><a value="signOut" ng-href="@Url.Action("SignOut", "ZonaUsuarios")/{{usuario._id}}" ng-click="goHome()">Sign Out</a></li>                 
-                    </ul>*@
-                </li>
-
-
+                <li usu="true" style="display:none"><a href="#/You" menu><i class="fa fa-user"></i> You</a></li>
+                <li usu="true" style="display:none"><a href="#/Track" menu><i class="fa fa-heartbeat"></i> Track</a></li>
+                <li usu="true" style="display:none"><a href="#/Connect" menu><i class="fa fa-envelope"></i> Connect</a></li>
+                <li usu="true" style="display:none"><a href="#/Leaders" menu><i class="fa fa-trophy"></i> Leaders</a></li>          
+                <li usu="true" style="display:none" class="dropdown" id="dropUsu" activo="false"></li>
             </ul>
         </div>
     </nav>
@@ -71,7 +58,7 @@
     @Scripts.Render("~/Scripts/Controllers/loginCtrl.js")
     @Scripts.Render("~/Scripts/Controllers/registroCtrl.js")
     @Scripts.Render("~/Scripts/Controllers/userCtrl.js")
-
+    @Scripts.Render("~/Scripts/Controllers/trackCtrl.js")
 
     @Scripts.Render("~/Scripts/Services/loginService.js")
     @Scripts.Render("~/Scripts/Services/registroService.js")
@@ -81,12 +68,6 @@
             $('#menu li').removeClass('active');
             $(this).parent().addClass('active');
         })
-
-        //var usu = sessionStorage["infoUsuario"];
-        //alert(usu)
-        //if (usu != null) {
-        //    $('li[usu=true]').css('display', 'block');
-        //}
     </script>
 </body>
 </html>

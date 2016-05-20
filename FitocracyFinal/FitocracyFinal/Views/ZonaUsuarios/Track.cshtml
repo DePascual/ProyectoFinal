@@ -1,4 +1,22 @@
-﻿<div class="text-center jumbotron">
-    TRACK ZONA USUARIOS
+﻿<div class="row" ng-controller="trackCtrl">
+    <!--COLUMNA IZQUIERDA-->
+    <div class="col-lg-4">
+        <div id="bsuqueda">
+            <input id="textBusqueda" name="textBusqueda" type="text" class="form-control" placeholder="Search" ng-model="textBusqueda" />
+            <button type="button" class="btn btn-default" ng-click="buscar()">Close</button>
+        </div>
+        
+        <div id="subMenu">
+            <div id="preMade">
+                
+            </div>
+            <div id="recent"></div>
+            <div id="all"></div>
+        </div>
+    </div>
+    <!--COLUMNA DERECHA-->
+    <div class="col-lg-8" id="vistaParcial">
+
+    </div>
 </div>
 

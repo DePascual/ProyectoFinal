@@ -41,7 +41,8 @@ namespace FitocracyFinal.Controllers
         }
         public ActionResult Track()
         {
-            return View();
+            Usuario usuario = (Usuario)Session["infoUsuario"];
+            return View(usuario);
         }
         public ActionResult Connect()
         {

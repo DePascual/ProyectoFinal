@@ -205,6 +205,7 @@
     <Content Include="Scripts\Controllers\entrenadoresCtrl.js" />
     <Content Include="Scripts\Controllers\loginCtrl.js" />
     <Content Include="Scripts\Controllers\registroCtrl.js" />
+    <Content Include="Scripts\Controllers\trackCtrl.js" />
     <Content Include="Scripts\Controllers\userCtrl.js" />
     <Content Include="Scripts\FitocracyModule.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

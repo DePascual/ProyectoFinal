@@ -5,7 +5,7 @@
         </div>
         <div class="col-lg-2"></div>
         <div class="col-lg-4 pull-right">
-            <p style="font-size:15px;">Already a Fitocrat?  <a href="/Login" class="button-login">Login</a></p>        
+            <p style="font-size:15px;">Already a Fitocrat?  <a href="#/Login" class="button-login">Login</a></p>        
         </div>
     </div>
     <br />
@@ -16,7 +16,9 @@
             <button id="buttonLogin" class="btn btn-primary btn-lg center" style="width:300px; float:right">Join Today</button>
         </div>
     </div>
-    
+    <br />
+    @Html.Partial("~/Views/PartialsViews/ServicesPV.cshtml", "");
+    <br />
     <div class="row portada">
         <h3>How Much Does It Cost?</h3>
         <p>PROFESSIONAL TRAINING FROM THE WORLD'S BEST COACHES STARTS FOR A LITTLES AS $1/DAY</p>
@@ -58,7 +60,6 @@
         </div>
 
 
-    </div>
-    @Html.Partial("~/Views/PartialsViews/ServicesPV.cshtml", "");
+    </div>  
 </div>
 

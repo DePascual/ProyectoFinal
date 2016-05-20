@@ -47,6 +47,7 @@ var configFunction = function ($routeProvider, $locationProvider) {
          })
         .when('/Track', {
             templateUrl: 'ZonaUsuarios/Track',
+            controller: 'trackCtrl'
         })
         .when('/Connect', {
             templateUrl: 'ZonaUsuarios/Connect',

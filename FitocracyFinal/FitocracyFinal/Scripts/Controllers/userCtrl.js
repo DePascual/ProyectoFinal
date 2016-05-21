@@ -1,6 +1,5 @@
 ﻿angular.module('Fitocracy')
     .controller('userCtrl', function ($scope, $http, $compile, $window, $location) {
-        alert('en el ctroleeerrr')
 
         if (sessionStorage.getItem("infoUsuario") != null) {
             var usuSession = JSON.parse(sessionStorage.getItem("infoUsuario"))

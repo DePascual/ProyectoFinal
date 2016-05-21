@@ -8,13 +8,12 @@ using System.Web;
 namespace FitocracyFinal.Models
 {
     [BsonIgnoreExtraElements(true)]
-    public class Tracks
+    public class Workouts
     {
         [BsonRepresentation(BsonType.ObjectId)]
         public string _id { get; set; }
         public string Nombre { get; set; }
-        public string Link { get; set; }
-        public int Series { get; set; }
-        public int Repeticiones { get; set; }
+        public int Puntos { get; set; }
+        public List<Tracks> Tracks { get; set; }
     }
 }

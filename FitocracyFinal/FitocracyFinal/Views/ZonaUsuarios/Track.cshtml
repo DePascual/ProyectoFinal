@@ -8,12 +8,15 @@
 
         <div id="subMenu">
             <div id="preMade">
-                <a ng-click="showDiv('preMadeWorkouts')">Pre-Made workouts<i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+                <a id="showDiv" ng-click="showDiv('preMadeWorkouts', $event)" show="false" style="font-size:medium">Pre-Made workouts  <i class="fa fa-chevron-up" aria-hidden="true"></i></a>
 
                 <div id="preMadeWorkouts" style="display:none">
-                    <div ng-repeat="alumno in alumnos">
-                        <p>{{alumno.nombre}}</p>
-                        <span>{{alumno.curso}}</span>
+                    <div ng-repeat="preW in preMadeWorkouts">
+                        <a style="font-size:medium" ng-click="descripcionEnPartial($event)" data="{{preW._id}}">{{preW.Nombre}}</a>
+                        <span>{{preW.Puntos}}</span>
+                        <div ng-repeat="track in preW.Tracks">
+                            <p>{{track.Nombre}}</p>
+                        </div>
                     </div>
                 </div>
 
@@ -24,7 +27,7 @@
     </div>
     <!--COLUMNA DERECHA-->
     <div class="col-lg-8" id="vistaParcial">
-
+       
     </div>
 
 </div>

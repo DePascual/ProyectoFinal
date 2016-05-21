@@ -11,7 +11,7 @@
         } else {
             $scope.preMadeWorkouts = JSON.parse(sessionStorage.getItem("workouts"));
         }
-     
+
         $scope.buscar = function () {
             var textoBusqueda = {
                 texto: $scope.textBusqueda
@@ -34,21 +34,32 @@
         };
 
         $scope.descripcionEnPartial = function (obj) {
-            $('#vistaParcial').empty();
+            //$('#vistaParcial').empty();
+            // $('#grid').css('display', 'block');
+
+            $scope.gridOptions
 
             var idHandler = obj.target.attributes.data.value;
 
-            $.each($scope.preMadeWorkouts, function (pos, el)
-            {
+            $.each($scope.preMadeWorkouts, function (pos, el) {
                 if (el._id == idHandler) {
                     $scope.Tracks = el.Tracks;
-                }             
+                }
             })
 
-            $('#vistaParcial').append('<div id="divTracks">'
-                                        +'<p>{{track.Nombre}}</p>'
-                                        +'</div>');
-            $('#divTracks').attr('ng-repeat', 'track in Tracks');
-            $compile($('#divTracks'))($scope);
+            $scope.gridOptions = {
+                columnDefs: [
+                    { name: '_id', visible: false }
+                ]
+            };
+
+
+            //$('#vistaParcial').append('<div id="divTracks">'
+            //                            +'<p>{{track.Nombre}}</p>'
+            //                            +'</div>');
+            //$('#divTracks').attr('ng-repeat', 'track in Tracks');
+            //$compile($('#divTracks'))($scope);
+
+
         };
     })

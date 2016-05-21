@@ -1,7 +1,7 @@
 ﻿<div class="row" ng-controller="trackCtrl">
     <!--COLUMNA IZQUIERDA-->
     <div class="col-lg-4">
-        <div id="bsuqueda">
+        <div id="busqueda">
             <input id="textBusqueda" name="textBusqueda" type="text" class="form-control" placeholder="Search" ng-model="textBusqueda" />
             <button type="button" class="btn btn-default" ng-click="buscar()">Close</button>
         </div>
@@ -14,9 +14,9 @@
                     <div ng-repeat="preW in preMadeWorkouts">
                         <a style="font-size:medium" ng-click="descripcionEnPartial($event)" data="{{preW._id}}">{{preW.Nombre}}</a>
                         <span>{{preW.Puntos}}</span>
-                        <div ng-repeat="track in preW.Tracks">
+                        @*<div ng-repeat="track in preW.Tracks">
                             <p>{{track.Nombre}}</p>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
 
@@ -27,7 +27,7 @@
     </div>
     <!--COLUMNA DERECHA-->
     <div class="col-lg-8" id="vistaParcial">
-       
+       <div id="grid" style="width:940px; height:300px;" ui-grid="{ data: Tracks,  columnDefs: [{ name: '_id', visible: false }] }" ></div>
     </div>
 
 </div>

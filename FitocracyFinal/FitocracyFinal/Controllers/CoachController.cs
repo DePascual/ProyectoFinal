@@ -42,7 +42,7 @@ namespace FitocracyFinal.Controllers
         }
 
 
-        public ActionResult detalleEntrenamiento(string idEntrenador, string idEntrenamiento)
+        public ActionResult irAdetalleEntrenamiento(string idEntrenador, string idEntrenamiento)
         {
             Entrenadores entrenador = new Entrenadores();
             entrenador = entrenador.entrenadorById(idEntrenador);
@@ -51,7 +51,15 @@ namespace FitocracyFinal.Controllers
             entrenamiento = entrenamiento.entrenamientoById(idEntrenamiento);
 
             EntrenamientoEntrenadoresVM vM = new EntrenamientoEntrenadoresVM(entrenador, entrenamiento);
-            return View(vM);
+
+            TempData["vm"] = vM;
+
+            return Redirect("http://localhost:2841/#/detalleEntrenamiento");
+        }
+
+        public ActionResult detalleEntrenamiento()
+        {
+            return View();
         }
 
         #region Carga collection "Entrenadores" MongoDb

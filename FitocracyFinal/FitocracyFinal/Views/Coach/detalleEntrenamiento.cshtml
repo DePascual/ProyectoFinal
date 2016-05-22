@@ -1,5 +1,6 @@
 ﻿@model FitocracyFinal.ViewModels.EntrenamientoEntrenadoresVM
 @using FitocracyFinal.Models
+@using FitocracyFinal.ViewModels
 
 <style>
     .redondo img {
@@ -19,19 +20,13 @@
     }
 </style>
 
-<div id="cabecera">
-    <div class="container">
-        <div class="navbar navbar-default">
-            <div class="navbar-header">
-                <h1>FITOCRACY COACHING TEAM</h1>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 @{
-    Entrenamientos entrenamiento = (Entrenamientos)Model.entrenamiento;
-    Entrenadores entrenador = (Entrenadores)Model.entrenador;
+    EntrenamientoEntrenadoresVM vM = (EntrenamientoEntrenadoresVM)TempData["vM"];
+
+    Entrenamientos entrenamiento = (Entrenamientos)vM.entrenamiento;
+    Entrenadores entrenador = (Entrenadores)vM.entrenador;
 
 }
 

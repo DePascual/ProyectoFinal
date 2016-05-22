@@ -36,12 +36,26 @@ namespace FitocracyFinal.Controllers
             if (TempData["workOut"] != null)
             {
                 datosVM = (WorkoutTracksTablaDatosVM)TempData["workOut"];
-            }
-           
-            //WorkoutTracksTablaDatosVM datosVM = new WorkoutTracksTablaDatosVM();
-            //datosVM.workoutVM = workout;
-            //datosVM.tracksVM = tracks;
+            }          
             return View(datosVM);
+        }
+
+        public ActionResult UserInfo()
+        {
+            Usuario usuario = (Usuario)Session["infoUsuario"];
+            return View(usuario);
+        }
+        public ActionResult UserWorkouts()
+        {
+            return View();
+        }
+        public ActionResult UserEvolution()
+        {
+            return View();
+        }
+        public ActionResult SummaryLevels()
+        {
+            return View();
         }
     }
 }

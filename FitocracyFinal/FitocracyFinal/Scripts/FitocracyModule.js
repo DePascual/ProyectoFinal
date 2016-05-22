@@ -15,11 +15,14 @@ var configFunction = function ($routeProvider, $locationProvider) {
             templateUrl: 'Coach/Home',
             //controller: 'entrenadoresCtrl'
         })
-         .when('/Coach/detalleEntrenamiento', {
-             templateUrl: function (params) {
-                 return 'Coach/detalleEntrenamiento?idEntrenador=' + params.idEntrenador + '&idEntrenamiento=' + params.idEntrenamiento;
-             }
-         })
+         //.when('/Coach/detalleEntrenamiento', {
+         //    templateUrl: function (params) {
+         //        return 'Coach/detalleEntrenamiento?idEntrenador=' + params.idEntrenador + '&idEntrenamiento=' + params.idEntrenamiento;
+         //    }
+         //})
+        .when('/detalleEntrenamiento', {
+            templateUrl: 'Coach/detalleEntrenamiento',
+        })
         .when('/About', {
             templateUrl: 'Home/About',
         })
@@ -44,6 +47,7 @@ var configFunction = function ($routeProvider, $locationProvider) {
         })
          .when('/You', {
              templateUrl: 'ZonaUsuarios/You',
+             controller: 'youCtrl'
          })
         .when('/Track', {
             templateUrl: 'ZonaUsuarios/Track',

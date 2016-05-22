@@ -89,11 +89,7 @@ namespace FitocracyFinal.Controllers
                         var usu = collection.AsQueryable().Where(x => x._id == idUsu).FirstOrDefault();
                         var fotoInicial = usu.Foto;
                         usu.Foto = array;
-                        collection.Save(usu);
-                    
-                        //var usuMod = collection.AsQueryable().Where(x => x._id == idUsu).FirstOrDefault();
-                        //var fotoFinal = usuMod.Foto;
-
+                        collection.Save(usu);                   
                     }
                     catch (Exception e)
                     {

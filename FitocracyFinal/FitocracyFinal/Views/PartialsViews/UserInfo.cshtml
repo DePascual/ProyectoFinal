@@ -1,0 +1,83 @@
+﻿@model FitocracyFinal.Models.Usuario
+<div class="center" style="background-color:#f8f8f8; border:1px solid #e7e7e7">
+    <form name="userForm" novalidate>
+
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="form-group col-lg-8">
+                <div class="input-group" ng-class="{'has-error':userForm.uName.$invalid && !userForm.uName.$touched}">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input id="uName" name="uName" type="text" class="form-control" placeholder="userName" ng-model="uName" ng-required="true" ng-minlength="3" ng-maxlength="15" />
+                </div>
+                <p ng-show="userForm.uName.$invalid && !userForm.uName.$touched" class="help-block">Enter a valid name</p>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="form-group col-lg-8">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                    <input id="uEmail" name="uEmail" type="text" class="form-control" value="@Model.Email" readonly />
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="form-group col-lg-8">
+
+                <div id="divBirthday">
+                    <input type="text" class="form-control">
+                </div>
+
+                @*<div class="input-group" ng-class="{'has-error':userForm.uBirthday.$invalid && !userForm.uBirthday.$touched}">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input id="uBirthday" name="uBirthday" type="text" class="form-control" placeholder="User Description" ng-model="uDescripcion" ng-required="true" ng-maxlength="200" />
+                </div>
+                <p ng-show="userForm.uDescripcion.$invalid && !userForm.uDescripcion.$touched" class="help-block">Enter a valid description</p>*@
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+
+        <script>
+            $('#divBirthday input').datepicker({
+            });
+        </script>
+
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="form-group col-lg-8">
+                <div class="input-group" ng-class="{'has-error':userForm.uDescripcion.$invalid && !userForm.uDescripcion.$touched}">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input id="uDescripcion" name="uDescripcion" type="text" class="form-control" placeholder="User Description" ng-model="uDescripcion" ng-required="true" ng-maxlength="200" />
+                </div>
+                <p ng-show="userForm.uDescripcion.$invalid && !userForm.uDescripcion.$touched" class="help-block">Enter a valid description</p>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+
+
+
+
+
+        @*<div class="row">
+                <div class="col-lg-2"></div>
+                <div class="form-group col-lg-8">
+                    <div class="input-group" ng-class="{'has-error':userForm.uPass.$invalid && !userForm.uPass.$touched}">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input id="uPass" name="uPass" type="password" class="form-control" placeholder="*********" ng-model="uPass" ng-required="true" ng-pattern="/^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{7,}$/" />
+                    </div>
+                    <p ng-show="userForm.uPass.$invalid && !userForm.uPass.$touched" class="help-block">Enter a valid password</p>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>*@
+
+        <div class="form-group text-center">
+            <input type="submit" class="btn btn-primary btn-lg" ng-click="actualizar(userForm.$valid)" ng-disabled="userForm.$invalid" value="Submit" />
+            <br />
+        </div>
+    </form>
+</div>

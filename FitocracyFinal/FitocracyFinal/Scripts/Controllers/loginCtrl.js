@@ -1,22 +1,8 @@
-﻿//var jq = $.noConflict();
-
-angular.module('Fitocracy')
+﻿angular.module('Fitocracy')
     .controller('loginCtrl', function ($scope, loginService, $window, $location) {
 
         //Muestra la ventana emergente
-        //$("#modalRegistro").modal('hide');
         $("#modalLogin").modal('show');
-
-        //$scope.uName = false;
-        //$scope.uPass = false;
-
-        //if ($scope.myForm.data) {
-        //    $scope.myForm.$setDirty
-        //}
-
-        //$scope.awesomeThings = [
-        //    'AngularJS'
-        //];
 
         //Funciones
         $scope.logear = function (isValid) {

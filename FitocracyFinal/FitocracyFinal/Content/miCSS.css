@@ -77,3 +77,7 @@ footer p {
     background: -moz-linear-gradient(center bottom,#3a3738 0,transparent 100%);
 }
 
+.pointer {
+  cursor: pointer;
+}
+

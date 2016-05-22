@@ -6,7 +6,7 @@
             <form class="form-inline">
                 <div class="form-group">
                     <div class="input-group">
-                        <input id="textBusqueda" name="textBusqueda" type="text" class="form-control" placeholder="Search" />
+                        <input id="textBusqueda" name="textBusqueda" type="text" class="form-control" placeholder="Search" ng-model="textBusqueda" />
                     </div>
                 </div>
                 <button type="button" class="btn btn-default" ng-click="buscar()">Search</button>
@@ -17,12 +17,12 @@
 
         <div id="subMenu">
             <div id="preMade">
-                <a id="link_preMadeWorkouts" ng-click="showDiv('preMadeWorkouts', $event)" show="false" style="font-size:medium; font-weight:bold">Pre-Made workouts  <i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+                <a class="pointer" id="link_preMadeWorkouts" ng-click="showDiv('preMadeWorkouts', $event)" show="false" style="font-size:medium; font-weight:bold">Pre-Made workouts  <i class="fa fa-chevron-up" aria-hidden="true"></i></a>
                 <br />
 
                 <div id="preMadeWorkouts" style="display:none">
                     <div ng-repeat="preW in preMadeWorkouts">
-                        <a style="font-size:medium" ng-click="descripcionEnPartial($event)" data="{{preW._id}}">{{preW.Nombre}}</a>
+                        <a class="pointer" style="font-size:medium" ng-click="descripcionEnPartial($event)" data="{{preW._id}}">{{preW.Nombre}}</a>
                         <span>{{preW.Puntos}}</span>
                         @*<div ng-repeat="track in preW.Tracks">
                                 <p>{{track.Nombre}}</p>
@@ -30,19 +30,46 @@
                     </div>
                 </div>
             </div>
+            <hr />
+            <br />
             <div id="recent">
-                <a id="link_recentWorkouts" ref="showDiv" ng-click="showDiv('recentWorkouts', $event)" show="false" style="font-size:medium; font-weight:bold">Recent workouts  <i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+                <a class="pointer" id="link_recentWorkouts" ref="showDiv" ng-click="showDiv('recentWorkouts', $event)" show="false" style="font-size:medium; font-weight:bold">Recent workouts  <i class="fa fa-chevron-up" aria-hidden="true"></i></a>
                 <br />
                 <div id="recentWorkouts" style="display:none">
-                    fldsfhglsdkhja
+                    <div ng-repeat="recentW in recentWorkouts">
+                        <a class="pointer" style="font-size:medium" ng-click="descripcionEnPartial($event)" data="{{recentW._id}}">{{recentW.Nombre}}</a>
+                        <span>{{recentW.Puntos}}</span>                    
+                    </div>
                 </div>
             </div>
         </div>
-        <div id="all"></div>
+        <hr />
+        <br />
+        <div id="all">
+            <a class="pointer" id="link_allTracks" ref="showDiv" ng-click="showDiv('allTracks', $event)" show="false" style="font-size:medium; font-weight:bold">All Tracks  <i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+            <br />
+            <div id="allTracks" style="display:none">
+                <div ng-repeat="track in allTracks | orderBy: 'Nombre'">
+                    <a class="pointer" style="font-size:medium" ng-click="trackEnPartial($event)" data="{{track._id}}">{{track.Nombre}}</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!--COLUMNA DERECHA-->
     <div class="col-lg-8" id="vistaParcial">
+        <div id="divBusqueda" style="display:none">
+            <h2 style="text-align:center; color:#1f2b32">Search Results</h2>
+            <hr />
+            <div ng-repeat="encontrado in tracksEncontrados | orderBy: 'Nombre'">
+                <ul>
+                    <li>
+                        <a class="pointer" style="font-size:medium" ng-click="trackEnPartial($event)" data="{{encontrado._id}}">{{encontrado.Nombre}}</a>
+                    </li>
+                </ul>             
+            </div>
+        </div>
+
         @*/<div id="grid" style="width:940px; height:300px;" ui-grid="{ data: Tracks,  columnDefs: [{ name: '_id', visible: false }] }" ></div>*@
     </div>
 

@@ -108,22 +108,7 @@ namespace FitocracyFinal.Controllers
             return Redirect("http://localhost:2841/#/You");
         }
 
-        [HttpPost]
-        public string recuperaWorkouts()
-        {
-            try
-            {
-                var collection = _dbContext.GetDatabase().GetCollection<Workouts>("workouts");
-                var workouts =  collection.FindAll().ToList();
-                return JsonConvert.SerializeObject(workouts);
-            }
-            catch (Exception)
-            {
-
-                return null;
-            }         
-        }
-
+        
         [HttpPost]
         public ActionResult workoutDone(string _idWorkout)
         {
@@ -133,16 +118,33 @@ namespace FitocracyFinal.Controllers
             eUsu.idUsuario = usuario._id;
             eUsu.idWorkout = _idWorkout;
 
-            //try
-            //{
-            //    var collection = _dbContext.GetDatabase().GetCollection<EntrenamientosUsuarios>("entrenamientosUsuarios");
-            //    collection.Insert(eUsu);              
-            //}
-            //catch (Exception e)
-            //{
-            //    string ex = e.ToString();
-            //}
+            try
+            {
+                var collection = _dbContext.GetDatabase().GetCollection<EntrenamientosUsuarios>("entrenamientosUsuarios");
+                collection.Insert(eUsu);
+            }
+            catch (Exception e)
+            {
+                string ex = e.ToString();
+            }
             return Redirect("http://localhost:2841/#/WorkoutDoneAlert");
+        }
+
+
+        [HttpPost]
+        public string recuperaWorkouts()
+        {
+            try
+            {
+                var collection = _dbContext.GetDatabase().GetCollection<Workouts>("workouts");
+                var workouts = collection.FindAll().ToList();
+                return JsonConvert.SerializeObject(workouts);
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
         }
 
         [HttpPost]
@@ -162,12 +164,42 @@ namespace FitocracyFinal.Controllers
                     workoutsUsu.Add(collectionWorkouts.AsQueryable().Where(x => x._id == workout.idWorkout).Select(x => x).SingleOrDefault());
                 }
 
-
                 return JsonConvert.SerializeObject(workoutsUsu);
             }
             catch (Exception)
             {
 
+                return null;
+            }
+        }
+
+        [HttpPost]
+        public string recuperaAllTracks()
+        {
+            try
+            {
+                var collection = _dbContext.GetDatabase().GetCollection<Tracks>("tracks");
+                var tracks = collection.FindAll().ToList();
+                return JsonConvert.SerializeObject(tracks);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        [HttpPost]
+        public string buscadorTracks(string textoBusqueda)
+        {
+            try
+            {
+                var collection = _dbContext.GetDatabase().GetCollection<Tracks>("tracks");
+                var tracksEncontrados = collection.AsQueryable().Where(x => x.Nombre.Contains(textoBusqueda)).Select(x => x).ToList();
+                return JsonConvert.SerializeObject(tracksEncontrados);
+            }
+            catch (Exception e)
+            {
+                string ex = e.ToString();
                 return null;
             }
         }

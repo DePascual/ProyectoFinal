@@ -1,28 +1,35 @@
 ﻿angular.module('Fitocracy')
     .controller('trackCtrl', function ($scope, trackService, $window, $compile) {
-
-    
-        if (sessionStorage.getItem("workouts") == null) {
-            var getData = trackService.preMadeWorkouts();
-            getData.then(function (msg) {
-                $scope.preMadeWorkouts = msg.data;
-                sessionStorage["workouts"] = JSON.stringify(msg.data);
-                //alert('primera vez. Metido en session!')
-            })
-        } else {
-            $scope.preMadeWorkouts = JSON.parse(sessionStorage.getItem("workouts"));
-        }
+        recuperaPreMadeWorkouts();
+        recuperaAllTracks();
 
         $scope.buscar = function () {
             var textoBusqueda = {
                 texto: $scope.textBusqueda
             }
+
+            var getBusqueda = trackService.buscadorTracks(textoBusqueda);
+            getBusqueda.then(function (msg) {
+                $scope.tracksEncontrados = msg.data;             
+            });
+            $('#divBusqueda').show();
         };
 
         $scope.showDiv = function (divId, obj) {
 
-            if (divId == "recentWorkouts") {
-                recuperaWorkoutsUsu();
+            switch (divId) {
+                case "preMadeWorkouts":
+                    sessionStorage.getItem("workouts") == null ? recuperaPreMadeWorkouts() : $scope.preMadeWorkouts = JSON.parse(sessionStorage.getItem("workouts"));                    
+                    break;
+
+                case "recentWorkouts":
+                    recuperaWorkoutsUsu();
+                    break;
+
+                case "allTracks":
+                    sessionStorage.getItem("allTracks") == null ? recuperaAllTracks() : $scope.allTracks= JSON.parse(sessionStorage.getItem("allTracks"));
+                    break;
+
             }
 
             var links = $('#subMenu').find('a[show]');
@@ -67,7 +74,6 @@
 
 
 
-
             //$scope.gridOptions = {
             //    columnDefs: [
             //        { name: '_id', visible: false }
@@ -84,14 +90,45 @@
 
         };
 
-        function recuperaWorkoutsUsu() {
-            var getData = trackService.recuperaWorkoutsUsu();
-            getData.then(function (msg) {
-                $scope.recentWorkouts = msg.data;
-                //sessionStorage["workouts"] = JSON.stringify(msg.data);
-                //alert('primera vez. Metido en session!')
+        $scope.trackEnPartial = function (obj) {
+
+            if ($('#divBusqueda').css('display') == 'block') {
+                $('#divBusqueda').hide()
+            };
+
+            var idHandler = obj.target.attributes.data.value;
+            $.each($scope.allTracks, function (pos, el) {
+                if (el._id == idHandler) {
+                    $scope.Track = el;
+
+                    $('#vistaParcial').empty();
+                    var ruta = "<iframe src=" + $scope.Track.Link + " allowfullscreen='' frameborder='0' style='height:500px; width:100%'></iframe>";
+                    $('#vistaParcial').append(ruta);
+                }
             })
         }
 
+        function recuperaPreMadeWorkouts() {
+            var getData = trackService.recuperaPreMadeWorkouts();
+            getData.then(function (msg) {
+                $scope.preMadeWorkouts = msg.data;
+                sessionStorage["workouts"] = JSON.stringify(msg.data);
+            })
+        };
 
+
+        function recuperaWorkoutsUsu() {
+            var getData2 = trackService.recuperaWorkoutsUsu();
+            getData2.then(function (msg) {
+                $scope.recentWorkouts = msg.data;
+            })
+        };
+
+        function recuperaAllTracks() {
+            var getData3 = trackService.recuperaAllTracks();
+            getData3.then(function (msg) {
+                $scope.allTracks = msg.data;
+                sessionStorage["allTracks"] = JSON.stringify(msg.data);
+            })
+        };
     })

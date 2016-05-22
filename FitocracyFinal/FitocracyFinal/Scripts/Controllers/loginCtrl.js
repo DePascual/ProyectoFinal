@@ -7,9 +7,16 @@ angular.module('Fitocracy')
         //$("#modalRegistro").modal('hide');
         $("#modalLogin").modal('show');
 
-        $scope.awesomeThings = [
-            'AngularJS'
-        ];
+        //$scope.uName = false;
+        //$scope.uPass = false;
+
+        //if ($scope.myForm.data) {
+        //    $scope.myForm.$setDirty
+        //}
+
+        //$scope.awesomeThings = [
+        //    'AngularJS'
+        //];
 
         //Funciones
         $scope.logear = function (isValid) {

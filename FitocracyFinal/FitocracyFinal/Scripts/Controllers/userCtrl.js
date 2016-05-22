@@ -42,5 +42,13 @@
                 $('#linkLogin').show();
             })
             $location.path("/Home");
+        };
+
+        $scope.goHomeUsu = function () {
+            $location.path("/Home_ZU");
+        };
+
+        $scope.goCoach = function () {
+            $location.path("/Coach");
         }
     })

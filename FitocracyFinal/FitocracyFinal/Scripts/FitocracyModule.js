@@ -59,8 +59,14 @@ var configFunction = function ($routeProvider, $locationProvider) {
             templateUrl: function (params) {
                 return 'ZonaUsuarios/SignOut?idUsuario=' + params.idUsuario;
             },
-           controller: 'userCtrl'
-        });
+            controller: 'userCtrl'
+        })
+         .when('/WorkoutDoneAlert', {
+             templateUrl: 'ZonaUsuarios/WorkoutDoneAlert',
+         });
+
+
+
     //$locationProvider.html5Mode(true).hashPrefix('!');
 }
 configFunction.$inject = ['$routeProvider', '$locationProvider'];

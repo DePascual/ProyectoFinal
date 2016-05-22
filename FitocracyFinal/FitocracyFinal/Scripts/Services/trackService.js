@@ -11,5 +11,18 @@
                 response = status;
             });
             return response;
-        }
+        };
+
+        this.recuperaWorkoutsUsu = function () {
+            var response = $http({
+                method: "post",
+                url: "/ZonaUsuarios/recuperaWorkoutsUsu",
+            }).success(function (result) {
+                response = result;
+            }).error(function (data, status, headers, config) {
+                response = status;
+            });
+            return response;
+        };
+
     })

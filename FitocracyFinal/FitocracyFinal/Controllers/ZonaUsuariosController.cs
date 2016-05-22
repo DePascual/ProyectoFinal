@@ -51,7 +51,14 @@ namespace FitocracyFinal.Controllers
         }
         public ActionResult Leaders()
         {
-            return View();
+            Usuario usuario = (Usuario)Session["infoUsuario"];
+            return View(usuario);
+        }
+
+        public ActionResult WorkoutDoneAlert()
+        {
+            Usuario usuario = (Usuario)Session["infoUsuario"];
+            return View(usuario);
         }
 
 
@@ -115,6 +122,54 @@ namespace FitocracyFinal.Controllers
 
                 return null;
             }         
+        }
+
+        [HttpPost]
+        public ActionResult workoutDone(string _idWorkout)
+        {
+            Usuario usuario = (Usuario)Session["infoUsuario"];
+
+            EntrenamientosUsuarios eUsu = new EntrenamientosUsuarios();
+            eUsu.idUsuario = usuario._id;
+            eUsu.idWorkout = _idWorkout;
+
+            //try
+            //{
+            //    var collection = _dbContext.GetDatabase().GetCollection<EntrenamientosUsuarios>("entrenamientosUsuarios");
+            //    collection.Insert(eUsu);              
+            //}
+            //catch (Exception e)
+            //{
+            //    string ex = e.ToString();
+            //}
+            return Redirect("http://localhost:2841/#/WorkoutDoneAlert");
+        }
+
+        [HttpPost]
+        public string recuperaWorkoutsUsu()
+        {
+            Usuario usuario = (Usuario)Session["infoUsuario"];
+            List<Workouts> workoutsUsu = new List<Workouts>();
+
+            try
+            {
+                var collection = _dbContext.GetDatabase().GetCollection<EntrenamientosUsuarios>("entrenamientosUsuarios");
+                var idWorkouts = collection.AsQueryable().Where(x => x.idUsuario == usuario._id).Select(x => x).ToList();
+
+                var collectionWorkouts = _dbContext.GetDatabase().GetCollection<Workouts>("workouts");
+                foreach (var workout in idWorkouts)
+                {
+                    workoutsUsu.Add(collectionWorkouts.AsQueryable().Where(x => x._id == workout.idWorkout).Select(x => x).SingleOrDefault());
+                }
+
+
+                return JsonConvert.SerializeObject(workoutsUsu);
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
         }
 
 

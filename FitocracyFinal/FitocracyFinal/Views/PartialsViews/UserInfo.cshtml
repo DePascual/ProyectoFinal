@@ -1,5 +1,7 @@
 ﻿@model FitocracyFinal.Models.Usuario
-<div class="center" style="background-color:#f8f8f8; border:1px solid #e7e7e7">
+<div class="center" id="userInfoDiv" style="background-color:#f8f8f8; border:1px solid #e7e7e7" ng-controller="youCtrl">
+
+    {{mensa}}
     <form name="userForm" novalidate>
 
         <div class="row">
@@ -28,16 +30,11 @@
         <div class="row">
             <div class="col-lg-2"></div>
             <div class="form-group col-lg-8">
-
-                <div id="divBirthday">
-                    <input type="text" class="form-control">
+                <div class="input-group" id="divBirthday">
+                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                    <input id="uBirthday" name="uBirthday" type="text" class="form-control" placeholder="@DateTime.Today.ToString("dd/MM/yyyy")"/>
                 </div>
-
-                @*<div class="input-group" ng-class="{'has-error':userForm.uBirthday.$invalid && !userForm.uBirthday.$touched}">
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input id="uBirthday" name="uBirthday" type="text" class="form-control" placeholder="User Description" ng-model="uDescripcion" ng-required="true" ng-maxlength="200" />
-                </div>
-                <p ng-show="userForm.uDescripcion.$invalid && !userForm.uDescripcion.$touched" class="help-block">Enter a valid description</p>*@
+              
             </div>
             <div class="col-lg-2"></div>
         </div>
@@ -50,11 +47,10 @@
         <div class="row">
             <div class="col-lg-2"></div>
             <div class="form-group col-lg-8">
-                <div class="input-group" ng-class="{'has-error':userForm.uDescripcion.$invalid && !userForm.uDescripcion.$touched}">
+                <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input id="uDescripcion" name="uDescripcion" type="text" class="form-control" placeholder="User Description" ng-model="uDescripcion" ng-required="true" ng-maxlength="200" />
+                    <textarea id="uDescripcion" name="uDescripcion" type="text" class="form-control" placeholder="User Description" ng-model="uDescripcion" ng-maxlength="200" />
                 </div>
-                <p ng-show="userForm.uDescripcion.$invalid && !userForm.uDescripcion.$touched" class="help-block">Enter a valid description</p>
             </div>
             <div class="col-lg-2"></div>
         </div>

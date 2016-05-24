@@ -8,7 +8,7 @@
             switch (idLink) {
                 case "userInfo":
                     $('#vistaParcial').load("http://localhost:2841/PartialsViews/UserInfo", function () {
-                        alert('deberia de estar cargada');
+                        //alert('deberia de estar cargada');
                         $compile($('#vistaParcial'))($scope);
                     });
                     break;
@@ -30,11 +30,34 @@
             if (isValid) {
                 var usuario = {
                     Username: $scope.uName,
+                    Email: $('#uEmail').val(),
+                    Birthday: $('#uBirthday').val(),
+                    Description: $scope.uDescripcion,
+                    PasswordOld: $scope.uPassOld,
+                    PasswordNew: $scope.uPassNew
                 }
             }
         };
 
-        $scope.mensa = "hollllaaaa"
 
+        $scope.showDiv = function (divId, obj) {
+            var visible = obj.target.attributes.show.value;
+            if (visible == 'false') {
+                $('#' + divId).show();
+                $('#link_' + divId).attr('show', 'true');
+                $('#link_' + divId).children().removeClass("fa fa-chevron-up").addClass("fa fa-chevron-down");
 
+                //$('#BtnChangeInfoUsu').attr('ng-click', 'actualizar(userForm.$valid && passWordForm.$valid)');
+                //$('#BtnChangeInfoUsu').attr('ng-disabled', 'userForm.$valid && passWordForm.$valid');
+                $('#BtnChangeInfoUsu').removeAttr('ng-click');
+                $('#BtnChangeInfoUsu').removeAttr('ng-disabled');
+
+               // $compile($('#BtnChangeInfoUsu'))($scope);
+            } else {
+                $('#' + divId).hide();
+                $('#link_' + divId).attr('show', 'false');
+                $('#link_' + divId).children().removeClass("fa fa-chevron-down").addClass("fa fa-chevron-up");
+            }
+           
+        };
     })

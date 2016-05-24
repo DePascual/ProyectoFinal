@@ -36,6 +36,11 @@ footer p {
     outline-color: green;
 }
 
+.ng-neutro{
+     border-color: #cccccc;
+     outline-color: #cccccc;
+}
+
 .portada h4 {
     font-size: 2em;
     text-transform: uppercase;
@@ -79,5 +84,10 @@ footer p {
 
 .pointer {
   cursor: pointer;
+}
+
+.dirty{
+    border-color: #ff6600;
+    background-color: #fff0e6;
 }
 

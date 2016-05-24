@@ -23,7 +23,7 @@
                     Username: $scope.uName,
                     Password: $scope.uPass
                 };
-                alert('Campos correctos ===> ' + usuario.Username + ' ' + usuario.Email + ' ' + usuario.Password);
+                //alert('Campos correctos ===> ' + usuario.Username + ' ' + usuario.Email + ' ' + usuario.Password);
 
                 //Envio de datos a loginService
                 var getData = registroService.UserRegistro(usuario);

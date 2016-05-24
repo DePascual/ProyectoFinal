@@ -1,17 +1,15 @@
 ﻿@model FitocracyFinal.Models.Usuario
 <div class="center" id="userInfoDiv" style="background-color:#f8f8f8; border:1px solid #e7e7e7" ng-controller="youCtrl">
 
-    {{mensa}}
     <form name="userForm" novalidate>
 
         <div class="row">
             <div class="col-lg-2"></div>
             <div class="form-group col-lg-8">
-                <div class="input-group" ng-class="{'has-error':userForm.uName.$invalid && !userForm.uName.$touched}">
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input id="uName" name="uName" type="text" class="form-control" placeholder="userName" ng-model="uName" ng-required="true" ng-minlength="3" ng-maxlength="15" />
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i> Username: </span>
+                    <input id="uName" name="uName" type="text" class="form-control ng-neutro" placeholder="userName"  ng-model="uName" ng-minlength="3" ng-maxlength="15" />
                 </div>
-                <p ng-show="userForm.uName.$invalid && !userForm.uName.$touched" class="help-block">Enter a valid name</p>
             </div>
             <div class="col-lg-2"></div>
         </div>
@@ -20,8 +18,8 @@
             <div class="col-lg-2"></div>
             <div class="form-group col-lg-8">
                 <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                    <input id="uEmail" name="uEmail" type="text" class="form-control" value="@Model.Email" readonly />
+                    <span class="input-group-addon"><i class="fa fa-envelope"></i> Email: </span>
+                    <input id="uEmail" name="uEmail" type="text" class="form-control ng-neutro" placeholder="@Model.Email" ng-readonly="true" ng-model="uEmail" />
                 </div>
             </div>
             <div class="col-lg-2"></div>
@@ -31,49 +29,76 @@
             <div class="col-lg-2"></div>
             <div class="form-group col-lg-8">
                 <div class="input-group" id="divBirthday">
-                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                    <input id="uBirthday" name="uBirthday" type="text" class="form-control" placeholder="@DateTime.Today.ToString("dd/MM/yyyy")"/>
-                </div>
-              
+                    <span class="input-group-addon"><i class="fa fa-birthday-cake" aria-hidden="true"></i> Birthday: </span>
+                    <input id="uBirthday" name="uBirthday" type="text" class="form-control ng-neutro" placeholder="@DateTime.Today.ToString("dd/MM/yyyy")" ng-model="uBirthday"/>
+                </div>             
             </div>
             <div class="col-lg-2"></div>
         </div>
 
         <script>
-            $('#divBirthday input').datepicker({
-            });
+            $('#divBirthday input').datepicker({});
         </script>
 
         <div class="row">
             <div class="col-lg-2"></div>
             <div class="form-group col-lg-8">
                 <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <textarea id="uDescripcion" name="uDescripcion" type="text" class="form-control" placeholder="User Description" ng-model="uDescripcion" ng-maxlength="200" />
+                    <span class="input-group-addon"><i class="fa fa-comment-o" aria-hidden="true"></i> Description: </span>
+                    <textarea id="uDescripcion" name="uDescripcion" type="text" class="form-control ng-neutro" placeholder="User Description" ng-model="uDescripcion" ng-maxlength="200"/>
                 </div>
             </div>
             <div class="col-lg-2"></div>
         </div>
 
+        <a class="pointer" id="link_changePassword" ng-click="showDiv('changePassword', $event)" show="false" style="font-size:medium; font-weight:bold">Change Password:  <i class="fa fa-chevron-up" aria-hidden="true"></i></a>
 
+        <div id="changePassword" style="display:none">
 
-
-
-        @*<div class="row">
+            <div class="row">
                 <div class="col-lg-2"></div>
                 <div class="form-group col-lg-8">
-                    <div class="input-group" ng-class="{'has-error':userForm.uPass.$invalid && !userForm.uPass.$touched}">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input id="uPass" name="uPass" type="password" class="form-control" placeholder="*********" ng-model="uPass" ng-required="true" ng-pattern="/^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{7,}$/" />
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i> Actual Password: </span>
+                        <input id="uPassOld" name="uPassOld" type="password" class="form-control ng-neutro" placeholder="*********" ng-model="uPassOld" ng-pattern="/^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{7,}$/" />
                     </div>
-                    <p ng-show="userForm.uPass.$invalid && !userForm.uPass.$touched" class="help-block">Enter a valid password</p>
                 </div>
                 <div class="col-lg-2"></div>
-            </div>*@
+            </div>
+
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="form-group col-lg-8">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i> New Password: </span>
+                        <input id="uPassNew" name="uPassNew" type="password" class="form-control ng-neutro" placeholder="*********" ng-model="uPassNew" ng-pattern="/^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{7,}$/" />
+                    </div>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="form-group col-lg-8">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i> Rewrite new Password: </span>
+                        <input id="uPassNewRep" name="uPassNewRep" type="password" class="form-control ng-neutro" placeholder="*********" ng-model="uPassNewRep" ng-pattern="/^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{7,}$/" compare-to="uPassNew"/>
+                    </div>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+
+        </div>
 
         <div class="form-group text-center">
-            <input type="submit" class="btn btn-primary btn-lg" ng-click="actualizar(userForm.$valid)" ng-disabled="userForm.$invalid" value="Submit" />
+            <input type="submit" class="btn btn-primary btn-lg" ng-click="actualizar()" value="Save Changes" />
             <br />
         </div>
     </form>
 </div>
+
+<script>
+    $('input, textarea').change(function () {
+        $(this).addClass('dirty');
+    })
+</script>

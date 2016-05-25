@@ -87,7 +87,7 @@ footer p {
 }
 
 .dirty{
-    border-color: #ff6600;
+    border: 2px solid #ff6600;
     background-color: #fff0e6;
 }
 

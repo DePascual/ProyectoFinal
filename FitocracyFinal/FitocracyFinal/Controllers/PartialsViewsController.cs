@@ -45,6 +45,13 @@ namespace FitocracyFinal.Controllers
             Usuario usuario = (Usuario)Session["infoUsuario"];
             return View(usuario);
         }
+
+        public ActionResult UserChangePass()
+        {
+            Usuario usuario = (Usuario)Session["infoUsuario"];
+            return View(usuario);
+        }
+
         public ActionResult UserWorkouts()
         {
             return View();

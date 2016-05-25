@@ -200,6 +200,34 @@ namespace FitocracyFinal.Controllers
             }
         }
 
+        [HttpPost]
+        public string UpdateUser(Usuario user)
+        {
+            Usuario usuario = (Usuario)Session["infoUsuario"];
+
+            try
+            {
+                var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
+                var usuCollection = collection.AsQueryable().Where(x => x._id == usuario._id).FirstOrDefault();
+
+                usuCollection.Username = user.Username != null ? user.Username : usuCollection.Username;
+                usuCollection.Birthday = user.Birthday != null ? user.Birthday : usuCollection.Birthday;
+                usuCollection.Description = user.Description != null ? user.Description : usuCollection.Description;
+
+                collection.Save(usuCollection);
+
+                var usuChanged = collection.AsQueryable().Where(x => x._id == usuario._id).FirstOrDefault();
+                return JsonConvert.SerializeObject(usuChanged);
+
+            }
+            catch (Exception e)
+            {
+                string exc = e.ToString();
+                return null;
+            }
+
+        }
+
 
         #region Carga collection "tracks" MongoDB
         public void cargaTracks()

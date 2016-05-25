@@ -1,5 +1,5 @@
 ﻿angular.module('Fitocracy')
-    .controller('youCtrl', function ($scope, $window, $location, $compile) {
+    .controller('youCtrl', function ($scope, youService, $window, $location, $compile) {
 
 
         $scope.cargaPartial = function (obj) {
@@ -8,35 +8,58 @@
             switch (idLink) {
                 case "userInfo":
                     $('#vistaParcial').load("http://localhost:2841/PartialsViews/UserInfo", function () {
-                        //alert('deberia de estar cargada');
+                        $compile($('#vistaParcial'))($scope);
+                    });
+                    break;
+                case "userChangePass":
+                    $('#vistaParcial').load("http://localhost:2841/PartialsViews/UserChangePass", function () {
                         $compile($('#vistaParcial'))($scope);
                     });
                     break;
                 case "userWorkouts":
                     $('#vistaParcial').load("http://localhost:2841/PartialsViews/UserWorkouts");
+                    $compile($('#vistaParcial'))($scope);
                     break;
                 case "userEvolution":
                     $('#vistaParcial').load("http://localhost:2841/PartialsViews/UserEvolution");
+                    $compile($('#vistaParcial'))($scope);
                     break;
                 case "summaryLevels":
                     $('#vistaParcial').load("http://localhost:2841/PartialsViews/SummaryLevels");
+                    $compile($('#vistaParcial'))($scope);
                     break;
             }
 
-           
+
         };
 
-        $scope.actualizar = function (isValid) {
-            if (isValid) {
-                var usuario = {
-                    Username: $scope.uName,
-                    Email: $('#uEmail').val(),
-                    Birthday: $('#uBirthday').val(),
-                    Description: $scope.uDescripcion,
-                    PasswordOld: $scope.uPassOld,
-                    PasswordNew: $scope.uPassNew
-                }
+        $scope.actualizarUserInfo = function () {
+            
+            //var usuario = {}
+            //$('.empty').each(function (pos, el) {
+            //    var property = $(this).attr('id');
+            //    var value = $(this).val();
+            //    usuario[property] = value;
+            //})
+
+
+            var usuario = {
+                Username: $scope.uName,
+                Email: $('#uEmail').val(),
+                Birthday: $('#uBirthday').val(),
+                Description: $scope.uDescripcion,
             }
+
+            var getData = youService.UpdateUser(usuario);
+
+            getData.then(function (msg) {
+                if (msg.data == "") {
+                    alert('nada')
+                } else {
+                    //update ok
+                    alert('ok')
+                }
+            })
         };
 
 
@@ -52,12 +75,12 @@
                 $('#BtnChangeInfoUsu').removeAttr('ng-click');
                 $('#BtnChangeInfoUsu').removeAttr('ng-disabled');
 
-               // $compile($('#BtnChangeInfoUsu'))($scope);
+                // $compile($('#BtnChangeInfoUsu'))($scope);
             } else {
                 $('#' + divId).hide();
                 $('#link_' + divId).attr('show', 'false');
                 $('#link_' + divId).children().removeClass("fa fa-chevron-down").addClass("fa fa-chevron-up");
             }
-           
+
         };
     })

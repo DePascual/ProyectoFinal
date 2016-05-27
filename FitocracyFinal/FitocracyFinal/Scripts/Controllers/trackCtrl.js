@@ -59,7 +59,7 @@
             //$('#vistaParcial').empty();
             // $('#grid').css('display', 'block');
 
-            $scope.gridOptions
+            //$scope.gridOptions
 
             var idHandler = obj.target.attributes.data.value;
 

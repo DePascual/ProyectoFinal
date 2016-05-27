@@ -1,5 +1,5 @@
 ﻿angular.module('Fitocracy')
-    .controller('youCtrl', function ($scope, youService, trackService, $window, $location, $compile) {
+    .controller('youCtrl', function ($scope, youService, trackService, $window, $location, $compile, ngTableParams) {
 
 
         $scope.cargaPartial = function (obj) {
@@ -17,8 +17,15 @@
                     });
                     break;
                 case "userWorkouts":
-                    $('#vistaParcial').load("http://localhost:2841/PartialsViews/UserWorkouts");
-                    $compile($('#vistaParcial'))($scope);
+                    $('#vistaParcial').load("http://localhost:2841/PartialsViews/UserWorkouts", function () {
+
+                        var getData = trackService.recuperaWorkoutsUsu();
+                        getData.then(function (msg) {
+                            $scope.recentWorkouts = msg.data;
+                        })
+                        $compile($('#vistaParcial'))($scope);
+                    });
+                    
                     break;
                 case "userEvolution":
                     $('#vistaParcial').load("http://localhost:2841/PartialsViews/UserEvolution");

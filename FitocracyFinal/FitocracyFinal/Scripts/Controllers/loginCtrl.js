@@ -18,7 +18,7 @@
 
                 //Respuesta de loginService
                 getData.then(function (msg) {
-                    if (msg.data == "") {
+                    if (msg.data == "null") {
                         $("#errorLogin").css('display', 'block');
                         $('#uName').removeClass('ng-valid').addClass('ng-invalid');
                         $('#uPass').removeClass('ng-valid').addClass('ng-invalid');

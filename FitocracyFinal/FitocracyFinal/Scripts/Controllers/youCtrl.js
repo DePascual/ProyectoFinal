@@ -1,5 +1,5 @@
 ﻿angular.module('Fitocracy')
-    .controller('youCtrl', function ($scope, youService, $window, $location, $compile) {
+    .controller('youCtrl', function ($scope, youService, trackService, $window, $location, $compile) {
 
 
         $scope.cargaPartial = function (obj) {
@@ -33,16 +33,7 @@
 
         };
 
-        $scope.actualizarUserInfo = function () {
-            
-            //var usuario = {}
-            //$('.empty').each(function (pos, el) {
-            //    var property = $(this).attr('id');
-            //    var value = $(this).val();
-            //    usuario[property] = value;
-            //})
-
-
+        $scope.actualizarUserInfo = function () {           
             var usuario = {
                 Username: $scope.uName,
                 Email: $('#uEmail').val(),
@@ -53,14 +44,30 @@
             var getData = youService.UpdateUser(usuario);
 
             getData.then(function (msg) {
-                if (msg.data == "") {
-                    alert('nada')
-                } else {
-                    //update ok
-                    alert('ok')
-                }
+                if (msg.data != "") {
+                    $('#modalChangesOK').modal('show')
+                } 
             })
         };
+
+
+        $scope.actualizarPassword = function () {
+            var cambioPass = {
+                PassOld: $scope.uPassOld,
+                PassNew: $scope.uPassNew,
+                PassNewRep: $scope.uPassNewRep
+            }
+
+            var getData = youService.UpdatePass(cambioPass);
+
+            getData.then(function (msg) {
+                if (msg.data == "True") {
+                    alert('contraseña cambiada')
+                    $('#modalChangesOK').show();
+                } 
+            })
+        };
+
 
 
         $scope.showDiv = function (divId, obj) {

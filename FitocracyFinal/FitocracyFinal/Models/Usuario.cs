@@ -32,7 +32,7 @@ namespace FitocracyFinal.Models
 
         private int _Level;
 
-        private string _WorkOuts;
+        private Dictionary<string, Workouts> _WorkoutsUser;
 
         private DateTime _Birthday;
 
@@ -153,18 +153,6 @@ namespace FitocracyFinal.Models
             }
         }
 
-        public string WorkOuts
-        {
-            get
-            {
-                return _WorkOuts;
-            }
-
-            set
-            {
-                _WorkOuts = value;
-            }
-        }
 
         public DateTime Birthday
         {
@@ -176,6 +164,19 @@ namespace FitocracyFinal.Models
             set
             {
                 _Birthday = value;
+            }
+        }
+
+        public Dictionary<string, Workouts> WorkoutsUser
+        {
+            get
+            {
+                return _WorkoutsUser;
+            }
+
+            set
+            {
+                _WorkoutsUser = value;
             }
         }
 

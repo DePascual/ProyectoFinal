@@ -36,9 +36,9 @@
                 <a class="pointer" id="link_recentWorkouts" ref="showDiv" ng-click="showDiv('recentWorkouts', $event)" show="false" style="font-size:medium; font-weight:bold">Recent workouts  <i class="fa fa-chevron-up" aria-hidden="true"></i></a>
                 <br />
                 <div id="recentWorkouts" style="display:none">
-                    <div ng-repeat="recentW in recentWorkouts">
-                        <a class="pointer" style="font-size:medium" ng-click="descripcionEnPartial($event)" data="{{recentW._id}}">{{recentW.Nombre}}</a>
-                        <span>{{recentW.Puntos}}</span>                    
+                    <div ng-repeat="(key, value) in recentWorkouts">
+                        <a class="pointer" style="font-size:medium" ng-click="descripcionEnPartial($event)" data="{{value._id}}">{{value.Nombre}}</a>
+                        <span><small>{{key}}</small> {{value.Puntos}}</span>
                     </div>
                 </div>
             </div>

@@ -5,12 +5,21 @@ using System.Web;
 using System.Web.Mvc;
 using FitocracyFinal.Models;
 using FitocracyFinal.ViewModels;
+using MongoDB.Driver.Linq;
 
 namespace FitocracyFinal.Controllers
 {
     public class PartialsViewsController : Controller
     {
-        
+
+        //Acceso a Base de Datos
+        private MongoDBcontext _dbContext;
+        public PartialsViewsController()
+        {
+            _dbContext = new MongoDBcontext();
+        }
+
+
         public ActionResult ServicesPV()
         {
             return View();
@@ -43,7 +52,9 @@ namespace FitocracyFinal.Controllers
         public ActionResult UserInfo()
         {
             Usuario usuario = (Usuario)Session["infoUsuario"];
-            return View(usuario);
+            var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
+            var usuCollection = collection.AsQueryable().Where(x => x._id == usuario._id).FirstOrDefault();
+            return View(usuCollection);
         }
 
         public ActionResult UserChangePass()

@@ -162,6 +162,8 @@
     <Content Include="Content\Imagenes\Portadas\portadaZonaUsu.jpg" />
     <Content Include="Content\Imagenes\Profiles\nophoto.png" />
     <Content Include="Content\miCSS.css" />
+    <Content Include="Content\ng-table.css" />
+    <Content Include="Content\ng-table.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="Content\ui-grid.css" />
@@ -514,6 +516,8 @@
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ng-table.js" />
+    <Content Include="Scripts\ng-table.min.js" />
     <Content Include="Scripts\Services\loginService.js" />
     <Content Include="Scripts\Services\registroService.js" />
     <Content Include="Scripts\Services\trackService.js" />
@@ -574,6 +578,7 @@
     <Content Include="Views\PartialsViews\UserEvolution.cshtml" />
     <Content Include="Views\PartialsViews\SummaryLevels.cshtml" />
     <Content Include="Views\PartialsViews\UserChangePass.cshtml" />
+    <Content Include="Scripts\ng-table.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

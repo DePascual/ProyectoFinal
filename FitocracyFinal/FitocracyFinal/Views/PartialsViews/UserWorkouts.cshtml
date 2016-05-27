@@ -1,3 +1,23 @@
-﻿<div class="center jumbotron">
-    USER WORKOUTS
+﻿<div class="center" id="userWorkoutsDiv" style="background-color:#f8f8f8; border:1px solid #e7e7e7" ng-controller="trackCtrl">
+    <div id="recentWorkouts">
+        <h3>YOUR WORKOUTS</h3>
+        <div ng-repeat="(key, value) in recentWorkouts">
+            <a class="pointer" style="font-size:medium" ng-click="descripcionEnPartial($event)" data="{{value._id}}">{{value.Nombre}}</a>
+            <span><small>{{key}}</small> {{value.Puntos}}</span>
+
+            <table ng-table="vm.tableParams" class="table" show-filter="true">
+                <tr ng-repeat="user in $data">
+                    <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+                        {{user.name}}
+                    </td>
+                    <td title="'Age'" filter="{ age: 'number'}" sortable="'age'">
+                        {{user.age}}
+                    </td>
+                </tr>
+            </table>
+
+
+
+        </div>
+    </div>
 </div>

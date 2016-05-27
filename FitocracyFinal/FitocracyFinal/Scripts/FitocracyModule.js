@@ -1,4 +1,4 @@
-﻿var Fitocracy = angular.module('Fitocracy', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ui.grid']);
+﻿var Fitocracy = angular.module('Fitocracy', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ui.grid', 'ngTable']);
 
 var configFunction = function ($routeProvider, $locationProvider) {
     $routeProvider.

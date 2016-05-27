@@ -38,7 +38,9 @@ namespace FitocracyFinal.Controllers
         public ActionResult You()
         {
             Usuario usuario = (Usuario)Session["infoUsuario"];
-            return View(usuario);
+            var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
+            var usuCollection = collection.AsQueryable().Where(x => x._id == usuario._id).FirstOrDefault();
+            return View(usuCollection);
         }
         public ActionResult Track()
         {
@@ -89,14 +91,14 @@ namespace FitocracyFinal.Controllers
                         var usu = collection.AsQueryable().Where(x => x._id == idUsu).FirstOrDefault();
                         var fotoInicial = usu.Foto;
                         usu.Foto = array;
-                        collection.Save(usu);                   
+                        collection.Save(usu);
                     }
                     catch (Exception e)
                     {
-                        string exc = e.ToString();             
+                        string exc = e.ToString();
                     }
-                 
-               }
+
+                }
 
                 System.IO.File.Delete(path);
             }
@@ -104,20 +106,23 @@ namespace FitocracyFinal.Controllers
             return Redirect("http://localhost:2841/#/You");
         }
 
-        
+
         [HttpPost]
         public ActionResult workoutDone(string _idWorkout)
         {
             Usuario usuario = (Usuario)Session["infoUsuario"];
-
-            EntrenamientosUsuarios eUsu = new EntrenamientosUsuarios();
-            eUsu.idUsuario = usuario._id;
-            eUsu.idWorkout = _idWorkout;
+            //Dictionary<string, Workouts> workoutsUser2 = new Dictionary<string, Workouts>();
 
             try
             {
-                var collection = _dbContext.GetDatabase().GetCollection<EntrenamientosUsuarios>("entrenamientosUsuarios");
-                collection.Insert(eUsu);
+                var collectionW = _dbContext.GetDatabase().GetCollection<Workouts>("workouts");
+                var workCollection = collectionW.AsQueryable().Where(x => x._id == _idWorkout).FirstOrDefault();
+
+                var collectionU = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
+                var usuCollection = collectionU.AsQueryable().Where(x => x._id == usuario._id).FirstOrDefault();
+                usuCollection.WorkoutsUser.Add(DateTime.Today.ToString("dd/MM/yyyy"), workCollection);
+          
+                collectionU.Save(usuCollection);
             }
             catch (Exception e)
             {
@@ -147,24 +152,14 @@ namespace FitocracyFinal.Controllers
         public string recuperaWorkoutsUsu()
         {
             Usuario usuario = (Usuario)Session["infoUsuario"];
-            List<Workouts> workoutsUsu = new List<Workouts>();
-
             try
             {
-                var collection = _dbContext.GetDatabase().GetCollection<EntrenamientosUsuarios>("entrenamientosUsuarios");
-                var idWorkouts = collection.AsQueryable().Where(x => x.idUsuario == usuario._id).Select(x => x).ToList();
-
-                var collectionWorkouts = _dbContext.GetDatabase().GetCollection<Workouts>("workouts");
-                foreach (var workout in idWorkouts)
-                {
-                    workoutsUsu.Add(collectionWorkouts.AsQueryable().Where(x => x._id == workout.idWorkout).Select(x => x).SingleOrDefault());
-                }
-
-                return JsonConvert.SerializeObject(workoutsUsu);
+                var collectionU = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
+                var usuCollection = collectionU.AsQueryable().Where(x => x._id == usuario._id).FirstOrDefault();
+                return JsonConvert.SerializeObject(usuCollection.WorkoutsUser);
             }
             catch (Exception)
             {
-
                 return null;
             }
         }
@@ -225,7 +220,28 @@ namespace FitocracyFinal.Controllers
                 string exc = e.ToString();
                 return null;
             }
+        }
 
+
+        [HttpPost]
+        public bool UpdatePassword(string passOld, string passNew)
+        {
+            Usuario usuario = (Usuario)Session["infoUsuario"];
+
+            try
+            {
+                var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
+                var usuCollection = collection.AsQueryable().Where(x => x._id == usuario._id).FirstOrDefault();
+                usuCollection.Password = passNew;
+                collection.Save(usuCollection);
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                string exc = e.ToString();
+                return false;
+            }
         }
 
 
@@ -366,7 +382,8 @@ namespace FitocracyFinal.Controllers
             t22.Series = 3;
             t22.Repeticiones = 10;
 
-            try {
+            try
+            {
 
                 collection.Insert(t1);
                 collection.Insert(t2);
@@ -390,7 +407,8 @@ namespace FitocracyFinal.Controllers
                 collection.Insert(t20);
                 collection.Insert(t21);
                 collection.Insert(t22);
-            }catch (Exception e)
+            }
+            catch (Exception e)
             {
                 var ex = e;
             }
@@ -468,7 +486,7 @@ namespace FitocracyFinal.Controllers
                 var ex = e;
             }
         }
-        
+
         #endregion
 
     }

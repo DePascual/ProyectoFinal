@@ -101,6 +101,7 @@ namespace FitocracyFinal.Controllers
         public bool Registro (Usuario usuario)
         {
             usuario.Foto = ImgToDb(new FileInfo(Server.MapPath("~//Content//Imagenes//Profiles//nophoto.png")));
+            usuario.WorkoutsUser = new Dictionary<string, Workouts>();
             try
             {
                 var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");

@@ -42,7 +42,8 @@
                     <div class="form-group text-center">
                         <input type="submit" class="btn btn-primary btn-lg" ng-click="logear(loginForm.$valid)" ng-disabled="loginForm.$invalid" value="Submit" />
                         <br />
-                        <span><a href="@Url.Action("ForgotPassword", "Home")" class="pointer">I forgot my username or password</a></span>
+                        @*<span><a href="@Url.Action("ForgotPassword", "Home")" class="pointer">I forgot my username or password</a></span>*@
+                        <span><a ng-click="irAChangePass()" class="pointer">I forgot my password</a></span>
                     </div>
                 </form>
             </div>
@@ -54,3 +55,12 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+
+
+
+
+
+
+

@@ -50,6 +50,5 @@ E:\ProyectosCarol\ProyectoFinal\FitocracyFinal\FitocracyFinal\bin\es\System.Web.
 E:\ProyectosCarol\ProyectoFinal\FitocracyFinal\FitocracyFinal\bin\es\System.Web.Webpages.Razor.resources.dll
 E:\ProyectosCarol\ProyectoFinal\FitocracyFinal\FitocracyFinal\bin\es\System.Web.Helpers.resources.dll
 E:\ProyectosCarol\ProyectoFinal\FitocracyFinal\FitocracyFinal\bin\es\System.Web.Mvc.resources.dll
-E:\ProyectosCarol\ProyectoFinal\FitocracyFinal\FitocracyFinal\obj\Debug\FitocracyFinal.csprojResolveAssemblyReference.cache
 E:\ProyectosCarol\ProyectoFinal\FitocracyFinal\FitocracyFinal\obj\Debug\FitocracyFinal.dll
 E:\ProyectosCarol\ProyectoFinal\FitocracyFinal\FitocracyFinal\obj\Debug\FitocracyFinal.pdb

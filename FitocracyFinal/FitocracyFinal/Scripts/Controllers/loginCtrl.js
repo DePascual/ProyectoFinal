@@ -3,6 +3,8 @@
 
         //Muestra la ventana emergente
         $("#modalLogin").modal('show');
+        $("#modalChangePass").modal('hide');
+        $("#modalChangesPassOK").modal('hide');
 
         //Funciones
         $scope.logear = function (isValid) {
@@ -46,6 +48,24 @@
         $scope.cerrar = function () {
             $("#modalLogin").modal('hide');
             window.location.href = "#/Home"
+        }
+
+        $scope.cerrarChangePass = function () {
+            $("#modalChangePass").modal('hide');
+            $("#modalLogin").modal('show');
+        }
+
+        $scope.cerrarChangeOk = function () {
+            $("#modalChangesPassOK").modal('hide');
+            $("#modalLogin").modal('show');
+        }
+
+
+        $scope.irAChangePass = function () {
+            $("#modalLogin").modal('hide');
+            window.location.href = "#/ChangePass";
         };
+
+       
 
     });

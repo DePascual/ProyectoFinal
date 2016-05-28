@@ -58,6 +58,11 @@ namespace FitocracyFinal.Controllers
         {
             return View();
         }
+
+        public ActionResult ChangePass()
+        {
+            return View();
+        }
         #endregion
 
 
@@ -73,12 +78,15 @@ namespace FitocracyFinal.Controllers
 
         public string loginRecupUsuario(Usuario usuario)
         {
+            EncriptacionClass encriptar = new EncriptacionClass();
+            string passEncriptada = encriptar.Encrit(usuario.Password);
+
             Usuario usu = new Usuario();
             try
             {
                 var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
                 var datosUsu = collection.AsQueryable()
-                    .Where(x => x.Username == usuario.Username && x.Password == usuario.Password)
+                    .Where(x => x.Username == usuario.Username && x.Password == passEncriptada)
                     .Select(x => new Usuario
                     {
                         _id = (string)x._id,
@@ -100,6 +108,10 @@ namespace FitocracyFinal.Controllers
         [HttpPost]
         public string Registro(Usuario usuario)
         {
+            EncriptacionClass encriptar = new EncriptacionClass();
+            string passEncriptada = encriptar.Encrit(usuario.Password);
+
+            usuario.Password = passEncriptada;
             usuario.Foto = ImgToDb(new FileInfo(Server.MapPath("~//Content//Imagenes//Profiles//nophoto.png")));
             usuario.WorkoutsUser = new Dictionary<string, Workouts>();
 
@@ -143,6 +155,29 @@ namespace FitocracyFinal.Controllers
                 return null;
             }
         }
+
+        [HttpPost]
+        public bool ForgotPassword(string Email)
+        {
+            var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
+            var usu = collection.AsQueryable().Where(x => x.Email == Email).Select(x => x).FirstOrDefault();
+
+            try
+            {
+                string newPass = generaNuevaPassword();
+                bool ok = UpdatePassword(newPass, usu);
+                SendEmailClass.EmailChangePass(usu, newPass);
+                return true;
+            }
+            catch (Exception e)
+            {
+                string ex = e.ToString();
+                return false;
+            }
+            
+
+
+        }
         #endregion
 
         #region Metodos auxiliares
@@ -154,6 +189,44 @@ namespace FitocracyFinal.Controllers
             imagestream.Read(content, 0, content.Length);
             imagestream.Close();
             return content;
+        }
+
+
+        public string generaNuevaPassword()
+        {
+            string newPass = "";
+            string caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            int n = caracteres.Length;
+
+            Random r = new Random();
+
+            for (int i = 0; i < 12; i++)
+            {
+                newPass += caracteres[r.Next(n)];
+            }
+            return newPass;
+        }
+
+
+        public bool UpdatePassword(string passNew, Usuario usuario)
+        {
+            EncriptacionClass encriptar = new EncriptacionClass();
+            string passEncriptadaNew = encriptar.Encrit(passNew);
+
+            try
+            {
+                var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
+                var usuCollection = collection.AsQueryable().Where(x => x._id == usuario._id).FirstOrDefault();
+                usuCollection.Password = passEncriptadaNew;
+                collection.Save(usuCollection);
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                string exc = e.ToString();
+                return false;
+            }
         }
         #endregion
     }

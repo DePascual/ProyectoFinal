@@ -34,7 +34,6 @@
         $scope.goHome = function () {
             $window.sessionStorage.removeItem("infoUsuario");
             $http.post("/ZonaUsuarios/SignOut", { "idUsuario": usuSession._id }).success(function () {
-                alert("ok")
                 $('li[usu=true]').hide();
                 $('#dropUsu').children().remove();
                 $('#dropUsu').attr('activo', 'false');

@@ -258,13 +258,17 @@ namespace FitocracyFinal.Controllers
         [HttpPost]
         public bool UpdatePassword(string passOld, string passNew)
         {
+            EncriptacionClass encriptar = new EncriptacionClass();
+            string passEncriptadaOld = encriptar.Encrit(passOld);
+            string passEncriptadaNew = encriptar.Encrit(passNew);
+
             Usuario usuario = (Usuario)Session["infoUsuario"];
 
             try
             {
                 var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
                 var usuCollection = collection.AsQueryable().Where(x => x._id == usuario._id).FirstOrDefault();
-                usuCollection.Password = passNew;
+                usuCollection.Password = passEncriptadaNew;
                 collection.Save(usuCollection);
                 return true;
 

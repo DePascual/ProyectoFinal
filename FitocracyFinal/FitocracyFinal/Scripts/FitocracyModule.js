@@ -34,6 +34,10 @@ var configFunction = function ($routeProvider, $locationProvider) {
             templateUrl: 'Home/Registro',
             controller: 'registroCtrl'
         })
+         .when('/ChangePass', {
+             templateUrl: 'Home/ChangePass',
+             controller: 'changePassCtrl'
+         })
 
 
 

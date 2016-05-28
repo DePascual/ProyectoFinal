@@ -86,11 +86,17 @@
 
             getData.then(function (msg) {
                 if (msg.data == "True") {
-                    alert('contraseña cambiada')
-                    $('#modalChangesOK').show();
+                    $('#modalChangesOK').modal('show');
+                } else {
+                    alert('no')
                 }
             })
         };
+
+        $scope.cerrarChangesOK = function () {
+            $('#modalChangesOK').modal('hide');
+            window.location.href = "#/You";
+        }
 
 
 

@@ -214,6 +214,7 @@
     <Content Include="Content\ui-grid.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\Controllers\changePassCtrl.js" />
     <Content Include="Scripts\Controllers\entrenadoresCtrl.js" />
     <Content Include="Scripts\Controllers\loginCtrl.js" />
     <Content Include="Scripts\Controllers\registroCtrl.js" />
@@ -540,10 +541,12 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CoachController.cs" />
+    <Compile Include="Controllers\EncriptacionClass.cs" />
     <Compile Include="Controllers\FotosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MongoDBcontext.cs" />
     <Compile Include="Controllers\PartialsViewsController.cs" />
+    <Compile Include="Controllers\SendEmailClass.cs" />
     <Compile Include="Controllers\ZonaUsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -584,6 +587,7 @@
     <Content Include="Views\PartialsViews\SummaryLevels.cshtml" />
     <Content Include="Views\PartialsViews\UserChangePass.cshtml" />
     <Content Include="Scripts\ng-table.min.js.map" />
+    <Content Include="Views\Home\ChangePass.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

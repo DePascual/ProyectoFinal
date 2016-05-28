@@ -34,6 +34,8 @@ namespace FitocracyFinal.Models
 
         private Dictionary<string, Workouts> _WorkoutsUser;
 
+        private Dictionary<string, Dictionary<string, int>> _EvolutionUser;
+
         private DateTime _Birthday;
 
         //public ObjectId IdUsuario
@@ -177,6 +179,19 @@ namespace FitocracyFinal.Models
             set
             {
                 _WorkoutsUser = value;
+            }
+        }
+
+        public Dictionary<string, Dictionary<string, int>> EvolutionUser
+        {
+            get
+            {
+                return _EvolutionUser;
+            }
+
+            set
+            {
+                _EvolutionUser = value;
             }
         }
 

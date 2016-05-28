@@ -69,50 +69,12 @@ namespace FitocracyFinal.Controllers
             Session["infoUsuario"] = null;
         }
 
-        [HttpPost]
-        public ActionResult uploadPhoto(HttpPostedFileBase file, string idUsu)
-        {
-
-            var url = Url.RequestContext.RouteData.Values["id"];
-            if (file != null)
-            {
-                string pic = Path.GetFileName(file.FileName);
-                string path = Path.Combine(Server.MapPath("~/Content/Imagenes/Profiles"), pic);
-                file.SaveAs(path);
-
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    file.InputStream.CopyTo(ms);
-                    byte[] array = ms.GetBuffer();
-
-                    try
-                    {
-                        var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
-                        var usu = collection.AsQueryable().Where(x => x._id == idUsu).FirstOrDefault();
-                        var fotoInicial = usu.Foto;
-                        usu.Foto = array;
-                        collection.Save(usu);
-                    }
-                    catch (Exception e)
-                    {
-                        string exc = e.ToString();
-                    }
-
-                }
-
-                System.IO.File.Delete(path);
-            }
-
-            return Redirect("http://localhost:2841/#/You");
-        }
 
 
         [HttpPost]
         public ActionResult workoutDone(string _idWorkout)
         {
             Usuario usuario = (Usuario)Session["infoUsuario"];
-            //Dictionary<string, Workouts> workoutsUser2 = new Dictionary<string, Workouts>();
-
             try
             {
                 var collectionW = _dbContext.GetDatabase().GetCollection<Workouts>("workouts");
@@ -120,8 +82,48 @@ namespace FitocracyFinal.Controllers
 
                 var collectionU = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
                 var usuCollection = collectionU.AsQueryable().Where(x => x._id == usuario._id).FirstOrDefault();
-                usuCollection.WorkoutsUser.Add(DateTime.Today.ToString("dd/MM/yyyy"), workCollection);
-          
+                usuCollection.WorkoutsUser.Add(DateTime.Now.ToString(), workCollection);
+
+                string yearActual = DateTime.Today.Year.ToString();
+                string mesActual = DateTime.Today.Month.ToString();
+
+                if (!usuCollection.EvolutionUser.ContainsKey(yearActual))
+                {
+                    Dictionary<string, Dictionary<string, int>> nuevoDicAnyo = new Dictionary<string, Dictionary<string, int>>();
+                    Dictionary<string, int> nuevoDicMeses = new Dictionary<string, int>();
+
+                    for (int i = 0; i < 12; i++)
+                    {
+                        nuevoDicMeses.Add((i + 1).ToString(), 0);
+                    }
+
+                    nuevoDicAnyo.Add(yearActual, nuevoDicMeses);
+                }
+
+
+                var dicMeses = usuCollection.EvolutionUser.Where(x => x.Key == yearActual).SingleOrDefault().Value;
+                int puntosMes = 0;
+
+
+                foreach (var mes in dicMeses)
+                {
+                    if (mes.Key.Equals(mesActual))
+                    {
+                        puntosMes = mes.Value;
+                        puntosMes += workCollection.Puntos;                                        
+                    }
+                }
+
+                dicMeses[mesActual] = puntosMes;
+
+                usuCollection.EvolutionUser[yearActual] = dicMeses;
+
+
+               //var puntosAcumulados = usuCollection.EvolutionUser.Where(x => x.Key == yearActual).SingleOrDefault().Value.Where(r => r.Key == mesActual).Select(r => r.Value + workCollection.Puntos).SingleOrDefault();
+
+
+
+
                 collectionU.Save(usuCollection);
             }
             catch (Exception e)
@@ -193,6 +195,44 @@ namespace FitocracyFinal.Controllers
                 string ex = e.ToString();
                 return null;
             }
+        }
+
+
+        [HttpPost]
+        public ActionResult uploadPhoto(HttpPostedFileBase file, string idUsu)
+        {
+
+            var url = Url.RequestContext.RouteData.Values["id"];
+            if (file != null)
+            {
+                string pic = Path.GetFileName(file.FileName);
+                string path = Path.Combine(Server.MapPath("~/Content/Imagenes/Profiles"), pic);
+                file.SaveAs(path);
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    file.InputStream.CopyTo(ms);
+                    byte[] array = ms.GetBuffer();
+
+                    try
+                    {
+                        var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
+                        var usu = collection.AsQueryable().Where(x => x._id == idUsu).FirstOrDefault();
+                        var fotoInicial = usu.Foto;
+                        usu.Foto = array;
+                        collection.Save(usu);
+                    }
+                    catch (Exception e)
+                    {
+                        string exc = e.ToString();
+                    }
+
+                }
+
+                System.IO.File.Delete(path);
+            }
+
+            return Redirect("http://localhost:2841/#/You");
         }
 
         [HttpPost]

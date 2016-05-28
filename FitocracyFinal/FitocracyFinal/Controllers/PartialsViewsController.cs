@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using FitocracyFinal.Models;
 using FitocracyFinal.ViewModels;
 using MongoDB.Driver.Linq;
+using Newtonsoft.Json;
 
 namespace FitocracyFinal.Controllers
 {
@@ -45,7 +46,7 @@ namespace FitocracyFinal.Controllers
             if (TempData["workOut"] != null)
             {
                 datosVM = (WorkoutTracksTablaDatosVM)TempData["workOut"];
-            }          
+            }
             return View(datosVM);
         }
 
@@ -74,6 +75,35 @@ namespace FitocracyFinal.Controllers
         public ActionResult SummaryLevels()
         {
             return View();
+        }
+
+        [HttpGet]
+        public string evolucionUsu()
+        {
+            List<Evolution> datos = new List<Evolution>();
+
+            Usuario usuario = (Usuario)Session["infoUsuario"];
+            var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
+            var usuCollection = collection.AsQueryable().Where(x => x._id == usuario._id).FirstOrDefault();
+
+
+            string yearActual = DateTime.Today.Year.ToString();
+
+            foreach (var dicAnyos in usuCollection.EvolutionUser)
+            {
+                if (dicAnyos.Key.Equals(yearActual))
+                {
+                    foreach (var mes in dicAnyos.Value)
+                    {
+                        Evolution ev = new Evolution();
+                        ev.Mes = mes.Key;
+                        ev.Puntos = mes.Value;
+                        datos.Add(ev);
+                    }
+                }                     
+            }
+
+         return JsonConvert.SerializeObject(datos);
         }
     }
 }

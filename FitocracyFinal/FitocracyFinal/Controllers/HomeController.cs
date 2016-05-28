@@ -32,8 +32,8 @@ namespace FitocracyFinal.Controllers
                 this._usuario = value;
             }
         }
-        
-        
+
+
         //View que trabaja a modo de Layout de la sección
         public ActionResult Index()
         {
@@ -67,7 +67,7 @@ namespace FitocracyFinal.Controllers
         public bool Logeo(Usuario usuario)
         {
             var existeUsu = false;
-            var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");           
+            var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
             return existeUsu = collection.AsQueryable().Where(x => x.Username == usuario.Username && x.Password == usuario.Password).Any() ? existeUsu = true : existeUsu = false;
         }
 
@@ -80,10 +80,10 @@ namespace FitocracyFinal.Controllers
                 var datosUsu = collection.AsQueryable()
                     .Where(x => x.Username == usuario.Username && x.Password == usuario.Password)
                     .Select(x => new Usuario
-                        {
-                            _id = (string)x._id,
-                            Username = (string)x.Username,
-                            Email = (string)x.Email
+                    {
+                        _id = (string)x._id,
+                        Username = (string)x.Username,
+                        Email = (string)x.Email
                     }).SingleOrDefault();
 
                 Session["infoUsuario"] = datosUsu;
@@ -93,26 +93,42 @@ namespace FitocracyFinal.Controllers
             catch (Exception)
             {
                 return null;
-            }         
+            }
         }
 
 
         [HttpPost]
-        public bool Registro (Usuario usuario)
+        public bool Registro(Usuario usuario)
         {
             usuario.Foto = ImgToDb(new FileInfo(Server.MapPath("~//Content//Imagenes//Profiles//nophoto.png")));
             usuario.WorkoutsUser = new Dictionary<string, Workouts>();
+           
+            int yearActual = DateTime.Today.Year;
+            int mesActual = DateTime.Today.Month;
+
+            Dictionary<string, Dictionary<string, int>> nuevoDicAnyo = new Dictionary<string, Dictionary<string, int>>();
+            Dictionary<string, int> nuevoDicMeses = new Dictionary<string, int>();
+
+            for (int i = 0; i < 12; i++)
+            {
+                nuevoDicMeses.Add((i + 1).ToString(), 0);
+            }
+
+            nuevoDicAnyo.Add(yearActual.ToString(), nuevoDicMeses);
+
+            usuario.EvolutionUser = nuevoDicAnyo;
+
             try
             {
                 var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
                 collection.Insert(usuario);
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 Console.Write("Error en la inserción del nuevo usuario");
                 return false;
-            }         
+            }
         }
         #endregion
 

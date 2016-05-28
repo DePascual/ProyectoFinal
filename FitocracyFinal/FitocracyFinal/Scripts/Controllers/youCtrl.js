@@ -18,18 +18,32 @@
                     break;
                 case "userWorkouts":
                     $('#vistaParcial').load("http://localhost:2841/PartialsViews/UserWorkouts", function () {
-
                         var getData = trackService.recuperaWorkoutsUsu();
                         getData.then(function (msg) {
                             $scope.recentWorkouts = msg.data;
                         })
                         $compile($('#vistaParcial'))($scope);
                     });
-                    
+
                     break;
                 case "userEvolution":
-                    $('#vistaParcial').load("http://localhost:2841/PartialsViews/UserEvolution");
-                    $compile($('#vistaParcial'))($scope);
+                    $('#vistaParcial').load("http://localhost:2841/PartialsViews/UserEvolution", function () {
+                        
+                        $.getJSON('/PartialsViews/evolucionUsu',
+                              function (data) {
+                                  Morris.Area({
+                                      element: 'graphic',
+                                      data: data,
+                                      xkey: 'Mes',
+                                      parseTime: false,
+                                      ykeys: ['Puntos'],
+                                      labels: ['Puntos']
+                                  });
+                              }
+                           );
+
+                        $compile($('#vistaParcial'))($scope);
+                    });
                     break;
                 case "summaryLevels":
                     $('#vistaParcial').load("http://localhost:2841/PartialsViews/SummaryLevels");
@@ -40,7 +54,7 @@
 
         };
 
-        $scope.actualizarUserInfo = function () {           
+        $scope.actualizarUserInfo = function () {
             var usuario = {
                 Username: $scope.uName,
                 Email: $('#uEmail').val(),
@@ -53,7 +67,7 @@
             getData.then(function (msg) {
                 if (msg.data != "") {
                     $('#modalChangesOK').modal('show')
-                } 
+                }
             })
         };
 
@@ -71,7 +85,7 @@
                 if (msg.data == "True") {
                     alert('contraseña cambiada')
                     $('#modalChangesOK').show();
-                } 
+                }
             })
         };
 

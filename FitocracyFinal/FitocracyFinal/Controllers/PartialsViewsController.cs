@@ -74,7 +74,10 @@ namespace FitocracyFinal.Controllers
         }
         public ActionResult SummaryLevels()
         {
-            return View();
+            var collection = _dbContext.GetDatabase().GetCollection<Levels>("levels");
+            var levels = collection.FindAll().ToList();
+
+            return View(levels);
         }
 
         [HttpGet]

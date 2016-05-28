@@ -115,15 +115,7 @@ namespace FitocracyFinal.Controllers
                 }
 
                 dicMeses[mesActual] = puntosMes;
-
                 usuCollection.EvolutionUser[yearActual] = dicMeses;
-
-
-               //var puntosAcumulados = usuCollection.EvolutionUser.Where(x => x.Key == yearActual).SingleOrDefault().Value.Where(r => r.Key == mesActual).Select(r => r.Value + workCollection.Puntos).SingleOrDefault();
-
-
-
-
                 collectionU.Save(usuCollection);
             }
             catch (Exception e)

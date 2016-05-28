@@ -552,6 +552,7 @@
     <Compile Include="Models\Entrenamientos.cs" />
     <Compile Include="Models\EntrenamientosUsuarios.cs" />
     <Compile Include="Models\Evolution.cs" />
+    <Compile Include="Models\Levels.cs" />
     <Compile Include="Models\Tracks.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\Workouts.cs" />

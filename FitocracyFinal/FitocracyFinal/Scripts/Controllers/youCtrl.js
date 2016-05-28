@@ -46,8 +46,11 @@
                     });
                     break;
                 case "summaryLevels":
-                    $('#vistaParcial').load("http://localhost:2841/PartialsViews/SummaryLevels");
-                    $compile($('#vistaParcial'))($scope);
+                    $('#vistaParcial').load("http://localhost:2841/PartialsViews/SummaryLevels", function () {
+
+                        $compile($('#vistaParcial'))($scope);
+                    });
+                 
                     break;
             }
 

@@ -10,6 +10,10 @@
             <div class="modal-body">
                 <p>Sign up below to continue your health and fitness journey.</p>
 
+                <div id="errorRegistro" style="display:none" class="text-center text-danger">
+                    <h3>The user already exists!!</h3>
+                </div>
+
                 <form name="registroForm" novalidate>
 
                     <div class="row">
@@ -68,7 +72,7 @@
             </div>
 
             <div class="modal-footer">            
-                <span class="pull-left"><a ng-click="irALogin()">I have already a Fitocracy account, silly!</a></span>
+                <span class="pull-left"><a ng-click="irALogin()" class="pointer">I have already a Fitocracy account, silly!</a></span>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div><!-- /.modal-content -->

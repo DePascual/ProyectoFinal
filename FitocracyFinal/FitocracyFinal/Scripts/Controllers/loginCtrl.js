@@ -25,13 +25,8 @@
                     }
                     else {
                         $window.sessionStorage["infoUsuario"] = JSON.stringify(msg.data);
-
                         $location.path("/ZonaUsuarios");
-                        //$window.location.href = "ZonaUsuarios";
                         $("#modalLogin").modal('hide');
-
-                      
-                        //$http.post("/ZonaUsuarios/Index", { "usuario": msg.data }).success(function () { alert(ok)})
                     }
                 })
             } else {

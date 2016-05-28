@@ -98,11 +98,11 @@ namespace FitocracyFinal.Controllers
 
 
         [HttpPost]
-        public bool Registro(Usuario usuario)
+        public string Registro(Usuario usuario)
         {
             usuario.Foto = ImgToDb(new FileInfo(Server.MapPath("~//Content//Imagenes//Profiles//nophoto.png")));
             usuario.WorkoutsUser = new Dictionary<string, Workouts>();
-           
+
             int yearActual = DateTime.Today.Year;
             int mesActual = DateTime.Today.Month;
 
@@ -121,13 +121,26 @@ namespace FitocracyFinal.Controllers
             try
             {
                 var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
-                collection.Insert(usuario);
-                return true;
+                var existe = collection.AsQueryable().Where(x => x.Email == usuario.Email).Any();
+                if (!existe)
+                {
+                    collection.Insert(usuario);
+                    Session["infoUsuario"] = usuario;
+
+                    return JsonConvert.SerializeObject(usuario);
+                }
+                else
+                {
+                    return null;
+                }
+
+
             }
             catch (Exception e)
             {
+                String ex = e.ToString();
                 Console.Write("Error en la inserción del nuevo usuario");
-                return false;
+                return null;
             }
         }
         #endregion

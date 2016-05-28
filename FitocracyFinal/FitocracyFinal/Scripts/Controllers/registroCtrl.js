@@ -1,17 +1,9 @@
 ﻿angular.module('Fitocracy')
-    .controller('registroCtrl', function ($scope, registroService) {
+    .controller('registroCtrl', function ($scope, registroService, $window, $location) {
 
-        //Muestra la ventana emergente
         $("#modalRegistro").modal('show');
-
-        $scope.awesomeThings = [
-            'AngularJS'
-        ];
-
+ 
         $scope.irALogin = function () {
-
-
-
             $("#modalRegistro").modal('hide');
             window.location.href = "#/Login";
         }
@@ -23,21 +15,17 @@
                     Username: $scope.uName,
                     Password: $scope.uPass
                 };
-                //alert('Campos correctos ===> ' + usuario.Username + ' ' + usuario.Email + ' ' + usuario.Password);
-
-                //Envio de datos a loginService
+              
                 var getData = registroService.UserRegistro(usuario);
-                //Respuesta de loginService
+
                 getData.then(function (msg) {
-                    if (msg.data == "False") {
-                        alert("Upppsss Incorrect !");                  
-                        //$("#alertModal").modal('show');
-                        //$scope.info = "Upss Incorrect !";
+                    if (msg.data == "null") {
+                        $("#errorRegistro").css('display', 'block');
                     }
                     else {
-                        //Meter en sesion al usuario
-                        alert("OK");
-                        //window.location.href = "/ZonaUsuarios/Index";
+                        $window.sessionStorage["infoUsuario"] = JSON.stringify(msg.data);
+                        $location.path("/ZonaUsuarios");
+                        $("#modalRegistro").modal('hide');
                     }
                 })
 

@@ -42,13 +42,13 @@
                     <div class="form-group text-center">
                         <input type="submit" class="btn btn-primary btn-lg" ng-click="logear(loginForm.$valid)" ng-disabled="loginForm.$invalid" value="Submit" />
                         <br />
-                        <span><a href="@Url.Action("ForgotPassword", "Home")">I forgot my username or password</a></span>
+                        <span><a href="@Url.Action("ForgotPassword", "Home")" class="pointer">I forgot my username or password</a></span>
                     </div>
                 </form>
             </div>
 
             <div class="modal-footer">
-                <span class="pull-left"><a ng-click="irARegistro()">I want to create a new account</a></span>
+                <span class="pull-left"><a ng-click="irARegistro()" class="pointer">I want to create a new account</a></span>
                 <button type="button" class="btn btn-default" ng-click="cerrar()">Close</button>
             </div>
         </div><!-- /.modal-content -->

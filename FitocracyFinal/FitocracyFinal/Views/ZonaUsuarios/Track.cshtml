@@ -22,7 +22,7 @@
 
                 <div id="preMadeWorkouts" style="display:none">
                     <div ng-repeat="preW in preMadeWorkouts">
-                        <a class="pointer" style="font-size:medium" ng-click="descripcionEnPartial($event)" data="{{preW._id}}">{{preW.Nombre}}</a>
+                        <a class="pointer" style="font-size:medium" ng-click="descripcionEnPartial('preMadeWorkouts', $event)" data="{{preW._id}}">{{preW.Nombre}}</a>
                         <span>{{preW.Puntos}}</span>
                         @*<div ng-repeat="track in preW.Tracks">
                                 <p>{{track.Nombre}}</p>
@@ -37,10 +37,28 @@
                 <br />
                 <div id="recentWorkouts" style="display:none">
                     <div ng-repeat="(key, value) in recentWorkouts">
-                        <a class="pointer" style="font-size:medium" ng-click="descripcionEnPartial($event)" data="{{value._id}}">{{value.Nombre}}</a>
+                        <a class="pointer" style="font-size:medium" ng-click="descripcionEnPartial('recentWorkouts', $event)" data="{{value._id}}">{{value.Nombre}}</a>
                         <span><small>{{key}}</small> {{value.Puntos}}</span>
                     </div>
                 </div>
+            </div>
+
+            <hr />
+            <br />
+            <div id="custom">              
+                <a class="pointer" id="link_customWorkouts" ref="showDiv" ng-click="showDiv('customWorkouts', $event)" show="false" style="font-size:medium; font-weight:bold">My custom Workouts!!  <i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+                <br />
+                <div id="customWorkouts" style="display:none">
+                    <div ng-repeat="(key, value) in customWorkouts">
+                        <a class="pointer" style="font-size:medium" ng-click="descripcionEnPartial('customWorkouts', $event)" data="{{value._id}}">{{value.Nombre}}</a>
+                        <span><small>{{key}}</small></span>
+                    </div>
+                </div>                      
+            </div>
+            <hr />
+            <br />
+            <div id="factory">
+                <a class="pointer" style="font-size:medium; font-weight:bold" ng-click="workoutsFactory()">Make your own Workout!!</a>
             </div>
         </div>
         <hr />
@@ -66,11 +84,10 @@
                     <li>
                         <a class="pointer" style="font-size:medium" ng-click="trackEnPartial($event)" data="{{encontrado._id}}">{{encontrado.Nombre}}</a>
                     </li>
-                </ul>             
+                </ul>
             </div>
         </div>
 
-        @*/<div id="grid" style="width:940px; height:300px;" ui-grid="{ data: Tracks,  columnDefs: [{ name: '_id', visible: false }] }" ></div>*@
     </div>
 
 </div>

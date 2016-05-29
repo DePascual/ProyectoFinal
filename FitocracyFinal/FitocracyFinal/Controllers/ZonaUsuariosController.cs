@@ -1,4 +1,5 @@
 ﻿using FitocracyFinal.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
@@ -174,6 +175,22 @@ namespace FitocracyFinal.Controllers
         }
 
         [HttpPost]
+        public string recuperaCustomWorkouts()
+        {
+            Usuario usuario = (Usuario)Session["infoUsuario"];
+            try
+            {
+                var collectionU = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
+                var usuCollection = collectionU.AsQueryable().Where(x => x._id == usuario._id).FirstOrDefault();
+                return JsonConvert.SerializeObject(usuCollection.CustomWorkouts);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        [HttpPost]
         public string buscadorTracks(string textoBusqueda)
         {
             try
@@ -279,6 +296,34 @@ namespace FitocracyFinal.Controllers
                 return false;
             }
         }
+
+        [HttpPost]
+        public bool GuardaMyWork(Workouts workout)
+        {
+            Usuario usuario = (Usuario)Session["infoUsuario"];
+
+            string id = DateTime.Now.ToString().Replace("/", "").Replace(" ", "").Replace(":", "");
+            id += "0000000000";
+
+            workout._id = id;
+
+            try
+            {
+                var collection = _dbContext.GetDatabase().GetCollection<Usuario>("usuarios");
+                var usuCollection = collection.AsQueryable().Where(x => x._id == usuario._id).FirstOrDefault();
+                usuCollection.CustomWorkouts.Add(DateTime.Now.ToString(), workout);
+
+                collection.Save(usuCollection);
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                string exc = e.ToString();
+                return false;
+            }
+        }
+
 
 
         #region Carga collection "tracks" MongoDB

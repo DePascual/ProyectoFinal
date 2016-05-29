@@ -47,7 +47,7 @@ namespace FitocracyFinal.Controllers
             }
             catch (Exception e)
             {
-
+                String ex = e.ToString();
                 return textoLimpio = "";
             }
         }

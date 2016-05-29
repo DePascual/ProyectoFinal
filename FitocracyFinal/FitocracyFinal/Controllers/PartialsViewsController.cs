@@ -50,6 +50,14 @@ namespace FitocracyFinal.Controllers
             return View(datosVM);
         }
 
+        public ActionResult workoutsFactory()
+        {
+
+            var collection = _dbContext.GetDatabase().GetCollection<Tracks>("tracks");
+            var tracks = collection.FindAll().ToList();
+            return View(tracks);
+        }
+
         public ActionResult UserInfo()
         {
             Usuario usuario = (Usuario)Session["infoUsuario"];
@@ -103,10 +111,10 @@ namespace FitocracyFinal.Controllers
                         ev.Puntos = mes.Value;
                         datos.Add(ev);
                     }
-                }                     
+                }
             }
 
-         return JsonConvert.SerializeObject(datos);
+            return JsonConvert.SerializeObject(datos);
         }
     }
 }

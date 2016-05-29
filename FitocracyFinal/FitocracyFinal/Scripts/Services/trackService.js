@@ -51,4 +51,30 @@
             return response;
         };
 
+        this.guardaMyWork = function (Workout) {
+            var response = $http({
+                method: "post",
+                url: "/ZonaUsuarios/GuardaMyWork",
+                data: JSON.stringify(Workout),
+                dataType: "json"
+            }).success(function (result) {
+                response = result;
+            }).error(function (data, status, headers, config) {
+                response = status;
+            });
+            return response;
+        };
+
+        this.recuperaCustomWorkouts = function () {
+            var response = $http({
+                method: "post",
+                url: "/ZonaUsuarios/recuperaCustomWorkouts",
+            }).success(function (result) {
+                response = result;
+            }).error(function (data, status, headers, config) {
+                response = status;
+            });
+            return response;
+        };
+
     })

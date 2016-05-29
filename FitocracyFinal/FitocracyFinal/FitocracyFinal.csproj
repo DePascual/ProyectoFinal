@@ -588,6 +588,7 @@
     <Content Include="Views\PartialsViews\UserChangePass.cshtml" />
     <Content Include="Scripts\ng-table.min.js.map" />
     <Content Include="Views\Home\ChangePass.cshtml" />
+    <Content Include="Views\PartialsViews\workoutsFactory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
